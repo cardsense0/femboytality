@@ -5164,21 +5164,20 @@ function Fatality.new(Window: Window)
 					SectionNamePadding.Parent = SectionName
 
 					UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
-						local contentHeight = UIListLayout.AbsoluteContentSize.Y
-						local MainScale = contentHeight + 30 + Config.Height;
-						local MaxHeight = 360
-						if MainScale > MaxHeight then MainScale = MaxHeight end
+    					local contentHeight = UIListLayout.AbsoluteContentSize.Y
+    					local MaxHeight = 300
+    					local clampedHeight = math.min(contentHeight + 30 + Config.Height, MaxHeight)
+
 						Elements.CanvasSize = UDim2.new(0, 0, 0, contentHeight + 5)
+						Elements.ScrollBarThickness = (contentHeight + 30 + Config.Height > MaxHeight) and 2 or 0
 
 						if not Menu.AutoFill then
-							Fatality:CreateAnimation(Section,0.25,{
-								Size = UDim2.new(1, 0, 0, MainScale)
-							})
+							Fatality:CreateAnimation(Section, 0.25, {
+							Size = UDim2.new(1, 0, 0, clampedHeight)
+						})
 						else
-							Fatality:CreateAnimation(Section,0.25,{
-								Size = UDim2.new(1, 0, 1, 0)
-							})
-						end;
+							Section.Size = UDim2.new(1, 0, 0, clampedHeight / 2.5)
+						end
 					end)
 
 					return Fatality:AddElements(Elements,Fatal,Menu,Config);
