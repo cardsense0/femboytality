@@ -3631,10 +3631,10 @@ function Fatality.new(Window: Window)
 	HeaderText.Position = UDim2.new(0, 5, 0.5, 0)
 	HeaderText.Size = UDim2.new(0, 100, 0.699999988, 0)
 	HeaderText.ZIndex = 4
-	HeaderText.Font = Enum.Font.GothamBlack
+	HeaderText.Font = Enum.Font.GothamBold
 	HeaderText.Text = Window.Name
 	HeaderText.TextColor3 = Fatality.Colors.HeadingText
-	HeaderText.TextSize = 17
+	HeaderText.TextSize = 20
 	HeaderText.TextStrokeTransparency = 1.0
 	HeaderText.RichText = false
 
@@ -4225,7 +4225,7 @@ function Fatality.new(Window: Window)
 				if bool then
 					Fatality:CreateAnimation(Icon,0.5,{
 						ImageTransparency = 0,
-						ImageColor3 = Color3.fromRGB(255, 255, 255)
+						ImageColor3 = Fatality.Colors.ActiveTab
 					});
 
 					Fatality:CreateAnimation(MenuButton,0.5,{
@@ -4234,7 +4234,7 @@ function Fatality.new(Window: Window)
 
 					Fatality:CreateAnimation(menu_name,0.5,{
 						TextTransparency = 0,
-						TextColor3 = Color3.fromRGB(255, 255, 255)
+						TextColor3 = Fatality.Colors.ActiveTab
 					});
 				else
 					Fatality:CreateAnimation(Icon,0.5,{
@@ -4990,7 +4990,14 @@ function Fatality.new(Window: Window)
 			table.insert(MenuLib.SubTabs, SubTabLib)
 
 			if #MenuLib.SubTabs == 1 then
+				SubTabBar.Visible = false
+				SubTabContentArea.Position = UDim2.new(0, 0, 0, 0)
+				SubTabContentArea.Size = UDim2.new(1, 0, 1, 0)
 				ValueSelect(true)
+			else
+				SubTabBar.Visible = true
+				SubTabContentArea.Position = UDim2.new(0, 0, 0, 30)
+				SubTabContentArea.Size = UDim2.new(1, 0, 1, -30)
 			end
 
 			function SubTabLib:AddSidebarCategory(Config)
@@ -5128,12 +5135,12 @@ function Fatality.new(Window: Window)
 					SpaceBox.Size = UDim2.new(0, 0, 0, 26)
 
 					SectionName.Name = Fatality:RandomString()
-					SectionName.Parent = Elements
-					SectionName.BackgroundColor3 = Fatality.Colors.GroupboxBg
+					SectionName.Parent = Section
+					SectionName.BackgroundColor3 = Fatality.Colors.MainBg
 					SectionName.BackgroundTransparency = 0
 					SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					SectionName.BorderSizePixel = 0
-					SectionName.Position = UDim2.new(0, 8, 0, 4)
+					SectionName.Position = UDim2.new(0, 12, 0, 2)
 					SectionName.Size = UDim2.new(0, 0, 0, 16)
 					SectionName.AutomaticSize = Enum.AutomaticSize.X
 					SectionName.ZIndex = Elements.ZIndex + 2
@@ -5263,12 +5270,12 @@ function Fatality.new(Window: Window)
 			SpaceBox.Size = UDim2.new(0, 0, 0, 26)
 
 			SectionName.Name = Fatality:RandomString()
-			SectionName.Parent = Elements
-			SectionName.BackgroundColor3 = Fatality.Colors.GroupboxBg
+			SectionName.Parent = Section
+			SectionName.BackgroundColor3 = Fatality.Colors.MainBg
 			SectionName.BackgroundTransparency = 0
 			SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SectionName.BorderSizePixel = 0
-			SectionName.Position = UDim2.new(0, 8, 0, 4)
+			SectionName.Position = UDim2.new(0, 12, 0, 2)
 			SectionName.Size = UDim2.new(0, 0, 0, 16)
 			SectionName.AutomaticSize = Enum.AutomaticSize.X
 			SectionName.ZIndex = Elements.ZIndex + 2
