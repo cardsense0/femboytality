@@ -3618,7 +3618,7 @@ function Fatality.new(Window: Window)
 	HeaderLine.Size = UDim2.new(1, 0, 0, 1)
 	HeaderLine.ZIndex = 3
 
-	UICorner_2.CornerRadius = UDim.new(0, 5)
+	UICorner_2.CornerRadius = UDim.new(0, 0)
 	UICorner_2.Parent = Header
 
 	HeaderText.Name = Fatality:RandomString()
@@ -5098,13 +5098,13 @@ function Fatality.new(Window: Window)
 
 					Elements.Name = Fatality:RandomString()
 					Elements.Parent = Section
-					Elements.AnchorPoint = Vector2.new(0.5, 1)
+					Elements.AnchorPoint = Vector2.new(0.5, 0)
 					Elements.BackgroundColor3 = Fatality.Colors.GroupboxBg
 					Elements.BackgroundTransparency = 0
 					Elements.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					Elements.BorderSizePixel = 0
-					Elements.Position = UDim2.new(0.5, 0, 1, -1)
-					Elements.Size = UDim2.new(1, -5, 1, -10)
+					Elements.Position = UDim2.new(0.5, 0, 0, 10)
+					Elements.Size = UDim2.new(1, -5, 1, -11)
 
 					UIStroke.Color = Color3.fromRGB(255, 255, 255)
 					UIStroke.Parent = Elements
@@ -5151,7 +5151,7 @@ function Fatality.new(Window: Window)
 					SectionNamePadding.Parent = SectionName
 
 					UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
-						local MainScale = UIListLayout.AbsoluteContentSize.Y + 20 + Config.Height;
+						local MainScale = UIListLayout.AbsoluteContentSize.Y + 30 + Config.Height;
 
 						if not Menu.AutoFill then
 							Fatality:CreateAnimation(Section,0.25,{
@@ -5233,13 +5233,13 @@ function Fatality.new(Window: Window)
 
 			Elements.Name = Fatality:RandomString()
 			Elements.Parent = Section
-			Elements.AnchorPoint = Vector2.new(0.5, 1)
+			Elements.AnchorPoint = Vector2.new(0.5, 0)
 			Elements.BackgroundColor3 = Fatality.Colors.GroupboxBg
 			Elements.BackgroundTransparency = 0
 			Elements.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Elements.BorderSizePixel = 0
-			Elements.Position = UDim2.new(0.5, 0, 1, -1)
-			Elements.Size = UDim2.new(1, -5, 1, -15)
+			Elements.Position = UDim2.new(0.5, 0, 0, 10)
+			Elements.Size = UDim2.new(1, -5, 1, -11)
 
 			UIStroke.Color = Color3.fromRGB(255, 255, 255)
 			UIStroke.Parent = Elements
@@ -5287,7 +5287,7 @@ function Fatality.new(Window: Window)
 
 
 			UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
-				local MainScale = UIListLayout.AbsoluteContentSize.Y + 20 + Config.Height;
+				local MainScale = UIListLayout.AbsoluteContentSize.Y + 30 + Config.Height;
 
 				if not Menu.AutoFill then
 					Fatality:CreateAnimation(Section,0.25,{
