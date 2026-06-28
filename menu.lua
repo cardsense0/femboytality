@@ -5136,7 +5136,8 @@ function Fatality.new(Window: Window)
 
 			return SubTabLib
 		end
-\n\t\tfunction MenuLib:AddSection(Config : Section)
+
+		function MenuLib:AddSection(Config : Section)
 			Config = Config or {};
 			Config.Name = Config.Name or "SECTION";
 			Config.Position = Config.Position or "center";
