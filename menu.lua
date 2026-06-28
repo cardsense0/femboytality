@@ -3757,8 +3757,8 @@ function Fatality.new(Window: Window)
 	MenuFrame.BackgroundTransparency = 1.000
 	MenuFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MenuFrame.BorderSizePixel = 0
-	MenuFrame.Position = UDim2.new(0, 0, 0, 50)
-	MenuFrame.Size = UDim2.new(1, 0, 1, -82)
+	MenuFrame.Position = UDim2.new(0, 0, 0, 41)
+	MenuFrame.Size = UDim2.new(1, 0, 1, -73)
 
 	Bottom.Name = Fatality:RandomString()
 	Bottom.Parent = FatalFrame
@@ -4176,17 +4176,13 @@ function Fatality.new(Window: Window)
 
 				Fatality:CreateAnimation(Icon,0.5,{
 					ImageTransparency = 0,
-					ImageColor3 = Color3.fromHex("#2596be")
+					ImageColor3 = Fatality.Colors.Accent
 				});
 
 				Fatality:CreateAnimation(menu_name,0.5,{
 					TextTransparency = 0,
-					TextColor3 = Color3.fromHex("#2596be")
+					TextColor3 = Fatality.Colors.ActiveTab
 				});
-
-				Fatality:CreateAnimation(MenuButton,0.5,{
-					BackgroundTransparency = 1.0
-				})
 
 				BindEvent:SetAttribute('V',true);
 				BindEvent:Fire(true);
@@ -4200,10 +4196,6 @@ function Fatality.new(Window: Window)
 					ImageTransparency = 0,
 					ImageColor3 = Fatality.Colors.InactiveTab
 				});
-
-				Fatality:CreateAnimation(MenuButton,0.5,{
-					BackgroundTransparency = 1.0
-				})
 
 				Fatality:CreateAnimation(menu_name,0.5,{
 					TextTransparency = 0,
@@ -4854,6 +4846,7 @@ function Fatality.new(Window: Window)
 		SubTabBar.BackgroundColor3 = Fatality.Colors.TopBarBg
 		SubTabBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		SubTabBar.BorderSizePixel = 0
+		SubTabBar.Position = UDim2.new(0, 0, 0, 0)
 		SubTabBar.Size = UDim2.new(1, 0, 0, 30)
 		SubTabBar.ZIndex = 8
 
@@ -4883,6 +4876,7 @@ function Fatality.new(Window: Window)
 		SubTabContentArea.Position = UDim2.new(0, 0, 0, 30)
 		SubTabContentArea.Size = UDim2.new(1, 0, 1, -30)
 
+		-- Example: MenuLib:AddSubTab({Name="General"}) then SubTab:AddSidebarCategory({Name="Local"})
 		function MenuLib:AddSubTab(Config)
 			Config = Config or {}
 			Config.Name = Config.Name or "SUBTAB"
@@ -5215,7 +5209,7 @@ function Fatality.new(Window: Window)
 			Elements.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Elements.BorderSizePixel = 0
 			Elements.Position = UDim2.new(0.5, 0, 1, -1)
-			Elements.Size = UDim2.new(1, -5, 1, -10)
+			Elements.Size = UDim2.new(1, -5, 1, -15)
 
 			UIStroke.Color = Color3.fromRGB(255, 255, 255)
 			UIStroke.Parent = Elements
