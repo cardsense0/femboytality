@@ -279,8 +279,20 @@ Fatality.Windows = {};
 Fatality.FontSemiBold = Font.new('rbxasset://fonts/families/GothamSSm.json',Enum.FontWeight.SemiBold,Enum.FontStyle.Normal);
 Fatality.Flags = {};
 Fatality.Colors = {
-	Black = Color3.fromRGB(16, 16, 16),
-	Main = Color3.fromRGB(255, 106, 133)
+	HeadingText = Color3.fromRGB(44, 46, 48),
+	ActiveTab = Color3.fromRGB(51, 51, 54),
+	InactiveTab = Color3.fromRGB(115, 116, 121),
+	TopBarBg = Color3.fromRGB(226, 228, 230),
+	MainBg = Color3.fromRGB(212, 214, 218),
+	BottomBarBg = Color3.fromRGB(226, 228, 230),
+	Warning = Color3.fromRGB(202, 164, 127),
+	GroupboxHeading = Color3.fromRGB(62, 63, 70),
+	GroupboxBg = Color3.fromRGB(226, 228, 230),
+	FeatureText = Color3.fromRGB(56, 58, 60),
+	Accent = Color3.fromRGB(192, 155, 168),
+	
+	Black = Color3.fromRGB(212, 214, 218),
+	Main = Color3.fromRGB(192, 155, 168)
 };
 Fatality.DragBlacklist = {};
 Fatality.Version = '1.6';
@@ -854,7 +866,7 @@ function Fatality:CreateColorPicker(ColorBox: Frame,Transparency, Callback)
 	ColorPickerFrame.Name = Fatality:RandomString()
 	ColorPickerFrame.Parent = OwnWindow
 	ColorPickerFrame.AnchorPoint = Vector2.new(0.5, 0)
-	ColorPickerFrame.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+	ColorPickerFrame.BackgroundColor3 = Fatality.Colors.MainBg
 	ColorPickerFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	ColorPickerFrame.BorderSizePixel = 0
 	ColorPickerFrame.ClipsDescendants = true
@@ -1365,7 +1377,7 @@ function Fatality:CreateDropdown(Parent: Frame, Default: string | {[string]: boo
 	DropdownItemFrame.Name = Fatality:RandomString()
 	DropdownItemFrame.Parent = Window
 	DropdownItemFrame.AnchorPoint = Vector2.new(0, 0)
-	DropdownItemFrame.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+	DropdownItemFrame.BackgroundColor3 = Fatality.Colors.MainBg
 	DropdownItemFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	DropdownItemFrame.BorderSizePixel = 0
 	DropdownItemFrame.ClipsDescendants = true
@@ -1581,33 +1593,20 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 
 		Fatality:ProtectText(Toggle_Name,Config.Name);
 
-		ValueFrame.Name = Fatality:RandomString()
-		ValueFrame.Parent = Toggle
-		ValueFrame.AnchorPoint = Vector2.new(1, 0.5)
-		ValueFrame.BackgroundColor3 = Fatality.Colors.Black
-		ValueFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		ValueFrame.BorderSizePixel = 0
-		ValueFrame.Position = UDim2.new(1, -3, 0.5, 0)
-		ValueFrame.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
-		ValueFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
-		ValueFrame.ZIndex = ZIndex + 2
-		ValueFrame.BackgroundTransparency = 1;
-
-		UICorner.CornerRadius = UDim.new(0, 2)
-		UICorner.Parent = ValueFrame
-
 		ValueIcon.Name = Fatality:RandomString()
-		ValueIcon.Parent = ValueFrame
-		ValueIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+		ValueIcon.Parent = Toggle
+		ValueIcon.AnchorPoint = Vector2.new(1, 0.5)
 		ValueIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		ValueIcon.BackgroundTransparency = 1.000
 		ValueIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		ValueIcon.BorderSizePixel = 0
-		ValueIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
-		ValueIcon.Size = UDim2.new(0.699999988, 0, 0.699999988, 0)
+		ValueIcon.Position = UDim2.new(1, -5, 0.5, 0)
+		ValueIcon.Size = UDim2.new(0.65, 0, 0.65, 0)
+		ValueIcon.SizeConstraint = Enum.SizeConstraint.RelativeYY
 		ValueIcon.ZIndex = ZIndex + 2
 		ValueIcon.Image = "rbxassetid://10709790644"
-		ValueIcon.ImageTransparency = 1;
+		ValueIcon.ImageColor3 = Fatality.Colors.InactiveTab
+		ValueIcon.ImageTransparency = 0
 
 		OptionButton.Name = Fatality:RandomString()
 		OptionButton.Parent = Toggle
@@ -1626,18 +1625,16 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 
 		local toggleImg = function(value)
 			if value then
-				Fatality:CreateAnimation(ValueIcon,0.45,{
-					ImageTransparency = 0,
-					ImageColor3 = Fatality.Colors.Main,
+				Fatality:CreateAnimation(ValueIcon,0.25,{
+					ImageColor3 = Fatality.Colors.Accent,
 					Size = UDim2.new(0.8, 0, 0.8, 0),
 					Rotation = 0,
 				})
 			else
-				Fatality:CreateAnimation(ValueIcon,0.45,{
-					ImageTransparency = 1,
-					ImageColor3 = Color3.fromRGB(255, 255, 255),
-					Size = UDim2.new(0.699999988, 0, 0.699999988, 0),
-					Rotation = 15
+				Fatality:CreateAnimation(ValueIcon,0.25,{
+					ImageColor3 = Fatality.Colors.InactiveTab,
+					Size = UDim2.new(0.65, 0, 0.65, 0),
+					Rotation = 0
 				})
 			end;
 		end;
@@ -2315,12 +2312,16 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Name = Fatality:RandomString()
 		ValueFrame.Parent = Dropdown
 		ValueFrame.AnchorPoint = Vector2.new(1, 0.5)
-		ValueFrame.BackgroundColor3 = Fatality.Colors.Black
+		ValueFrame.BackgroundColor3 = Fatality.Colors.MainBg
 		ValueFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		ValueFrame.BorderSizePixel = 0
 		ValueFrame.Position = UDim2.new(1, -3, 0.5, 0)
 		ValueFrame.Size = UDim2.new(0, 75, 0.925000012, 0)
 		ValueFrame.ZIndex = ZIndex + 4
+
+		local DropUIStroke = Instance.new("UIStroke")
+		DropUIStroke.Color = Color3.fromRGB(185, 187, 192)
+		DropUIStroke.Parent = ValueFrame
 
 		UICorner.CornerRadius = UDim.new(0, 2)
 		UICorner.Parent = ValueFrame
@@ -3319,7 +3320,7 @@ end;
 function Fatality.new(Window: Window)
 	Window = Window or {};
 	Window.Name = Window.Name or "FATALITY";
-	Window.Scale = Window.Scale or UDim2.new(0, 750, 0, 500);
+	Window.Scale = Window.Scale or UDim2.new(0, 850, 0, 580);
 	Window.Keybind = Window.Keybind or "Insert";
 	Window.Expire = Window.Expire or "never";
 
@@ -3573,7 +3574,7 @@ function Fatality.new(Window: Window)
 	FatalFrame.Name = Fatality:RandomString()
 	FatalFrame.Parent = Fatalitywin
 	FatalFrame.AnchorPoint = Vector2.new(0.5, 0)
-	FatalFrame.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+	FatalFrame.BackgroundColor3 = Fatality.Colors.MainBg
 	FatalFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	FatalFrame.BorderSizePixel = 0
 	FatalFrame.Position = UDim2.new(0.5, 0, 0.2);
@@ -3601,7 +3602,7 @@ function Fatality.new(Window: Window)
 	Header.Name = Fatality:RandomString()
 	Header.Parent = FatalFrame
 	Header.Active = true
-	Header.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+	Header.BackgroundColor3 = Fatality.Colors.TopBarBg
 	Header.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Header.BorderSizePixel = 0
 	Header.Size = UDim2.new(1, 0, 0, 40)
@@ -3763,7 +3764,7 @@ function Fatality.new(Window: Window)
 	Bottom.Parent = FatalFrame
 	Bottom.Active = true
 	Bottom.AnchorPoint = Vector2.new(0, 1)
-	Bottom.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+	Bottom.BackgroundColor3 = Fatality.Colors.TopBarBg
 	Bottom.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Bottom.BorderSizePixel = 0
 	Bottom.Position = UDim2.new(0, 0, 1, 0)
@@ -4284,7 +4285,7 @@ function Fatality.new(Window: Window)
 
 			Preview.Name = "Preview"
 			Preview.Parent = (string.lower(Config.Position) == 'left' and Left) or (string.lower(Config.Position) == 'center' and Center) or Right;
-			Preview.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+			Preview.BackgroundColor3 = Fatality.Colors.MainBg
 			Preview.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Preview.BorderSizePixel = 0
 			Preview.ClipsDescendants = true
@@ -4421,7 +4422,7 @@ function Fatality.new(Window: Window)
 
 			ListBox.Name = Fatality:RandomString()
 			ListBox.Parent = (string.lower(Config.Position) == 'left' and Left) or (string.lower(Config.Position) == 'center' and Center) or Right;
-			ListBox.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+			ListBox.BackgroundColor3 = Fatality.Colors.MainBg
 			ListBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ListBox.BorderSizePixel = 0
 			ListBox.ClipsDescendants = true
@@ -4841,7 +4842,301 @@ function Fatality.new(Window: Window)
 			return res;
 		end;
 
-		function MenuLib:AddSection(Config : Section)
+		
+		MenuLib.SubTabs = {}
+		MenuLib.SelectedSubTab = nil
+
+		local SubTabBar = Instance.new("Frame")
+		SubTabBar.Name = Fatality:RandomString()
+		SubTabBar.Parent = MenuLiber
+		SubTabBar.BackgroundColor3 = Fatality.Colors.TopBarBg
+		SubTabBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		SubTabBar.BorderSizePixel = 0
+		SubTabBar.Size = UDim2.new(1, 0, 0, 30)
+		SubTabBar.ZIndex = 8
+
+		local SubTabContainer = Instance.new("ScrollingFrame")
+		SubTabContainer.Name = Fatality:RandomString()
+		SubTabContainer.Parent = SubTabBar
+		SubTabContainer.Active = true
+		SubTabContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		SubTabContainer.BackgroundTransparency = 1.000
+		SubTabContainer.BorderSizePixel = 0
+		SubTabContainer.Size = UDim2.new(1, 0, 1, 0)
+		SubTabContainer.ScrollBarThickness = 0
+
+		local SubTabUIListLayout = Instance.new("UIListLayout")
+		SubTabUIListLayout.Parent = SubTabContainer
+		SubTabUIListLayout.FillDirection = Enum.FillDirection.Horizontal
+		SubTabUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		SubTabUIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+		SubTabUIListLayout.Padding = UDim.new(0, 10)
+
+		local SubTabContentArea = Instance.new("Frame")
+		SubTabContentArea.Name = Fatality:RandomString()
+		SubTabContentArea.Parent = MenuLiber
+		SubTabContentArea.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		SubTabContentArea.BackgroundTransparency = 1.000
+		SubTabContentArea.BorderSizePixel = 0
+		SubTabContentArea.Position = UDim2.new(0, 0, 0, 30)
+		SubTabContentArea.Size = UDim2.new(1, 0, 1, -30)
+
+		function MenuLib:AddSubTab(Config)
+			Config = Config or {}
+			Config.Name = Config.Name or "SUBTAB"
+
+			local SubTabLib = {}
+			SubTabLib.Categories = {}
+			SubTabLib.SelectedCategory = nil
+
+			local SubTabButton = Instance.new("TextButton")
+			SubTabButton.Name = Fatality:RandomString()
+			SubTabButton.Parent = SubTabContainer
+			SubTabButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SubTabButton.BackgroundTransparency = 1.000
+			SubTabButton.Size = UDim2.new(0, 80, 1, 0)
+			SubTabButton.Font = Enum.Font.GothamMedium
+			SubTabButton.Text = Config.Name
+			SubTabButton.TextColor3 = Fatality.Colors.InactiveTab
+			SubTabButton.TextSize = 13.000
+
+			local SubTabFrame = Instance.new("Frame")
+			SubTabFrame.Name = Fatality:RandomString()
+			SubTabFrame.Parent = SubTabContentArea
+			SubTabFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			SubTabFrame.BackgroundTransparency = 1.000
+			SubTabFrame.Size = UDim2.new(1, 0, 1, 0)
+			SubTabFrame.Visible = false
+
+			-- Sidebar
+			local SidebarBar = Instance.new("Frame")
+			SidebarBar.Name = Fatality:RandomString()
+			SidebarBar.Parent = SubTabFrame
+			SidebarBar.BackgroundColor3 = Fatality.Colors.MainBg
+			SidebarBar.BorderSizePixel = 0
+			SidebarBar.Size = UDim2.new(0, 140, 1, 0)
+
+			local SidebarContainer = Instance.new("ScrollingFrame")
+			SidebarContainer.Name = Fatality:RandomString()
+			SidebarContainer.Parent = SidebarBar
+			SidebarContainer.Active = true
+			SidebarContainer.BackgroundTransparency = 1.000
+			SidebarContainer.BorderSizePixel = 0
+			SidebarContainer.Size = UDim2.new(1, 0, 1, 0)
+			SidebarContainer.ScrollBarThickness = 0
+
+			local SidebarUIListLayout = Instance.new("UIListLayout")
+			SidebarUIListLayout.Parent = SidebarContainer
+			SidebarUIListLayout.FillDirection = Enum.FillDirection.Vertical
+			SidebarUIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			SidebarUIListLayout.Padding = UDim.new(0, 5)
+
+			local SidebarContentArea = Instance.new("Frame")
+			SidebarContentArea.Name = Fatality:RandomString()
+			SidebarContentArea.Parent = SubTabFrame
+			SidebarContentArea.BackgroundTransparency = 1.000
+			SidebarContentArea.BorderSizePixel = 0
+			SidebarContentArea.Position = UDim2.new(0, 150, 0, 0)
+			SidebarContentArea.Size = UDim2.new(1, -150, 1, 0)
+
+			local function ValueSelect(bool)
+				if bool then
+					MenuLib.SelectedSubTab = SubTabLib
+					Fatality:CreateAnimation(SubTabButton, 0.25, {TextColor3 = Fatality.Colors.HeadingText})
+					SubTabFrame.Visible = true
+				else
+					Fatality:CreateAnimation(SubTabButton, 0.25, {TextColor3 = Fatality.Colors.InactiveTab})
+					SubTabFrame.Visible = false
+				end
+			end
+
+			SubTabButton.MouseButton1Click:Connect(function()
+				for _, v in pairs(MenuLib.SubTabs) do
+					v.ValueSelect(false)
+				end
+				ValueSelect(true)
+			end)
+
+			SubTabLib.ValueSelect = ValueSelect
+			table.insert(MenuLib.SubTabs, SubTabLib)
+
+			if #MenuLib.SubTabs == 1 then
+				ValueSelect(true)
+			end
+
+			function SubTabLib:AddSidebarCategory(Config)
+				Config = Config or {}
+				Config.Name = Config.Name or "CATEGORY"
+
+				local CategoryLib = {}
+
+				local CategoryButton = Instance.new("TextButton")
+				CategoryButton.Name = Fatality:RandomString()
+				CategoryButton.Parent = SidebarContainer
+				CategoryButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				CategoryButton.BackgroundTransparency = 1.000
+				CategoryButton.Size = UDim2.new(1, 0, 0, 30)
+				CategoryButton.Font = Enum.Font.GothamMedium
+				CategoryButton.Text = Config.Name
+				CategoryButton.TextColor3 = Fatality.Colors.InactiveTab
+				CategoryButton.TextSize = 13.000
+				CategoryButton.TextXAlignment = Enum.TextXAlignment.Left
+
+				local CategoryFrame = Instance.new("Frame")
+				CategoryFrame.Name = Fatality:RandomString()
+				CategoryFrame.Parent = SidebarContentArea
+				CategoryFrame.BackgroundTransparency = 1.000
+				CategoryFrame.Size = UDim2.new(1, 0, 1, 0)
+				CategoryFrame.Visible = false
+
+				-- Create Left and Right columns inside CategoryFrame instead of MenuLiber
+				local CatLeft = Instance.new("ScrollingFrame")
+				CatLeft.Name = Fatality:RandomString()
+				CatLeft.Parent = CategoryFrame
+				CatLeft.Active = true
+				CatLeft.BackgroundTransparency = 1.000
+				CatLeft.BorderSizePixel = 0
+				CatLeft.Position = UDim2.new(0, 0, 0, 0)
+				CatLeft.Size = UDim2.new(0.48, 0, 1, -5)
+				CatLeft.ScrollBarThickness = 0
+				local UIListLayoutLeft = Instance.new("UIListLayout")
+				UIListLayoutLeft.Parent = CatLeft
+				UIListLayoutLeft.HorizontalAlignment = Enum.HorizontalAlignment.Center
+				UIListLayoutLeft.Padding = UDim.new(0, 10)
+
+				local CatRight = Instance.new("ScrollingFrame")
+				CatRight.Name = Fatality:RandomString()
+				CatRight.Parent = CategoryFrame
+				CatRight.Active = true
+				CatRight.BackgroundTransparency = 1.000
+				CatRight.BorderSizePixel = 0
+				CatRight.Position = UDim2.new(0.52, 0, 0, 0)
+				CatRight.Size = UDim2.new(0.48, 0, 1, -5)
+				CatRight.ScrollBarThickness = 0
+				local UIListLayoutRight = Instance.new("UIListLayout")
+				UIListLayoutRight.Parent = CatRight
+				UIListLayoutRight.HorizontalAlignment = Enum.HorizontalAlignment.Center
+				UIListLayoutRight.Padding = UDim.new(0, 10)
+
+				local function CatValueSelect(bool)
+					if bool then
+						SubTabLib.SelectedCategory = CategoryLib
+						Fatality:CreateAnimation(CategoryButton, 0.25, {TextColor3 = Fatality.Colors.HeadingText})
+						CategoryFrame.Visible = true
+					else
+						Fatality:CreateAnimation(CategoryButton, 0.25, {TextColor3 = Fatality.Colors.InactiveTab})
+						CategoryFrame.Visible = false
+					end
+				end
+
+				CategoryButton.MouseButton1Click:Connect(function()
+					for _, v in pairs(SubTabLib.Categories) do
+						v.CatValueSelect(false)
+					end
+					CatValueSelect(true)
+				end)
+
+				CategoryLib.CatValueSelect = CatValueSelect
+				table.insert(SubTabLib.Categories, CategoryLib)
+
+				if #SubTabLib.Categories == 1 then
+					CatValueSelect(true)
+				end
+
+				function CategoryLib:AddSection(Config)
+					Config = Config or {}
+					Config.Name = Config.Name or "SECTION"
+					Config.Position = Config.Position or "left"
+					Config.Height = Config.Height or 0
+
+					table.insert(Fatal.ElementContents,{
+						Name = Config.Name,
+						Path = Menu.Name .. " > " .. Config.Name,
+						_TAB = _B
+					});
+
+					local Section = Instance.new("Frame")
+					local Elements = Instance.new("Frame")
+					local UIStroke = Instance.new("UIStroke")
+					local UICorner = Instance.new("UICorner")
+					local UIListLayout = Instance.new("UIListLayout")
+					local SpaceBox = Instance.new("Frame")
+					local SectionName = Instance.new("TextLabel")
+
+					Section.Name = Fatality:RandomString()
+					Section.Parent = (string.lower(Config.Position) == 'right' and CatRight) or CatLeft
+					Section.BackgroundColor3 = Fatality.Colors.MainBg
+					Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					Section.BorderSizePixel = 0
+					Section.ClipsDescendants = true
+					Section.Size = UDim2.new(1, 0, 0, 0)
+
+					Elements.Name = Fatality:RandomString()
+					Elements.Parent = Section
+					Elements.AnchorPoint = Vector2.new(0.5, 1)
+					Elements.BackgroundColor3 = Fatality.Colors.GroupboxBg
+					Elements.BackgroundTransparency = 0
+					Elements.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					Elements.BorderSizePixel = 0
+					Elements.Position = UDim2.new(0.5, 0, 1, -1)
+					Elements.Size = UDim2.new(1, -5, 1, -10)
+
+					UIStroke.Color = Color3.fromRGB(185, 187, 192)
+					UIStroke.Parent = Elements
+
+					UICorner.CornerRadius = UDim.new(0, 2)
+					UICorner.Parent = Elements
+
+					UIListLayout.Parent = Elements
+					UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+					UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+					UIListLayout.Padding = UDim.new(0, 5)
+
+					SpaceBox.Name = Fatality:RandomString()
+					SpaceBox.Parent = Elements
+					SpaceBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					SpaceBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					SpaceBox.BorderSizePixel = 0
+					SpaceBox.Size = UDim2.new(0, 0, 0, 10)
+
+					SectionName.Name = Fatality:RandomString()
+					SectionName.Parent = Section
+					SectionName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					SectionName.BackgroundTransparency = 1.000
+					SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					SectionName.BorderSizePixel = 0
+					SectionName.Position = UDim2.new(0, 10, 0, 0)
+					SectionName.Size = UDim2.new(1, 0, 0, 15)
+					SectionName.Font = Enum.Font.GothamBold;
+					SectionName.Text = string.upper(Config.Name)
+					SectionName.TextColor3 = Fatality.Colors.GroupboxHeading
+					SectionName.TextSize = 13.000
+					SectionName.TextStrokeTransparency = 1.000
+					SectionName.TextXAlignment = Enum.TextXAlignment.Left
+
+					UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
+						local MainScale = UIListLayout.AbsoluteContentSize.Y + 20 + Config.Height;
+
+						if not Menu.AutoFill then
+							Fatality:CreateAnimation(Section,0.25,{
+								Size = UDim2.new(1, 0, 0, MainScale)
+							})
+						else
+							Fatality:CreateAnimation(Section,0.25,{
+								Size = UDim2.new(1, 0, 1, 0)
+							})
+						end;
+					end)
+
+					return Fatality:AddElements(Elements,Fatal,Menu,Config);
+				end
+
+				return CategoryLib
+			end
+
+			return SubTabLib
+		end
+\n\t\tfunction MenuLib:AddSection(Config : Section)
 			Config = Config or {};
 			Config.Name = Config.Name or "SECTION";
 			Config.Position = Config.Position or "center";
@@ -4893,7 +5188,7 @@ function Fatality.new(Window: Window)
 
 			Section.Name = Fatality:RandomString()
 			Section.Parent = (string.lower(Config.Position) == 'left' and Left) or (string.lower(Config.Position) == 'center' and Center) or Right;
-			Section.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+			Section.BackgroundColor3 = Fatality.Colors.MainBg
 			Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Section.BorderSizePixel = 0
 			Section.ClipsDescendants = true
@@ -4902,14 +5197,14 @@ function Fatality.new(Window: Window)
 			Elements.Name = Fatality:RandomString()
 			Elements.Parent = Section
 			Elements.AnchorPoint = Vector2.new(0.5, 1)
-			Elements.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+			Elements.BackgroundColor3 = Fatality.Colors.GroupboxBg
 			Elements.BackgroundTransparency = 0
 			Elements.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Elements.BorderSizePixel = 0
 			Elements.Position = UDim2.new(0.5, 0, 1, -1)
 			Elements.Size = UDim2.new(1, -5, 1, -10)
 
-			UIStroke.Color = Color3.fromRGB(29, 29, 29)
+			UIStroke.Color = Color3.fromRGB(185, 187, 192)
 			UIStroke.Parent = Elements
 
 			UICorner.CornerRadius = UDim.new(0, 2)
@@ -4935,11 +5230,11 @@ function Fatality.new(Window: Window)
 			SectionName.BorderSizePixel = 0
 			SectionName.Position = UDim2.new(0, 10, 0, 0)
 			SectionName.Size = UDim2.new(1, 0, 0, 15)
-			SectionName.FontFace = Fatality.FontSemiBold;
-			SectionName.Text = Config.Name
-			SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
-			SectionName.TextSize = 15.000
-			SectionName.TextStrokeTransparency = 0.750
+			SectionName.Font = Enum.Font.GothamBold;
+			SectionName.Text = string.upper(Config.Name)
+			SectionName.TextColor3 = Fatality.Colors.GroupboxHeading
+			SectionName.TextSize = 13.000
+			SectionName.TextStrokeTransparency = 1.000
 			SectionName.TextXAlignment = Enum.TextXAlignment.Left
 
 
@@ -5133,7 +5428,7 @@ function Fatality.new(Window: Window)
 		SearchFrame.Name = Fatality:RandomString()
 		SearchFrame.Parent = Fatalitywin;
 		SearchFrame.AnchorPoint = Vector2.new(0, 1)
-		SearchFrame.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+		SearchFrame.BackgroundColor3 = Fatality.Colors.MainBg
 		SearchFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		SearchFrame.BorderSizePixel = 0
 		SearchFrame.Position = UDim2.new(4,0,4,0)
@@ -5790,7 +6085,7 @@ function Fatality:CreateNotifier(): Notifier
 
 			notify.Name = Fatality:RandomString()
 			notify.Parent = layout
-			notify.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+			notify.BackgroundColor3 = Fatality.Colors.MainBg
 			notify.BackgroundTransparency = 1.000
 			notify.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			notify.BorderSizePixel = 0
@@ -5799,7 +6094,7 @@ function Fatality:CreateNotifier(): Notifier
 			notify_block.Name = Fatality:RandomString()
 			notify_block.Parent = notify
 			notify_block.AnchorPoint = Vector2.new(0.5, 0)
-			notify_block.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
+			notify_block.BackgroundColor3 = Fatality.Colors.MainBg
 			notify_block.BackgroundTransparency = 1
 			notify_block.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			notify_block.BorderSizePixel = 0
