@@ -4021,13 +4021,6 @@ function Fatality.new(Window: Window)
 		MenuButton.Size = UDim2.new(0, text_size.X + 33, 0.85, 0)
 
 		local MenuLiber = Instance.new("Frame")
-		local Left = Instance.new("ScrollingFrame")
-		local UIListLayout = Instance.new("UIListLayout")
-		local Center = Instance.new("ScrollingFrame")
-		local UIListLayout_2 = Instance.new("UIListLayout")
-		local Right = Instance.new("ScrollingFrame")
-		local UIListLayout_3 = Instance.new("UIListLayout")
-
 		MenuLiber.Name = Fatality:RandomString()
 		MenuLiber.Parent = MenuFrame
 		MenuLiber.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4038,75 +4031,8 @@ function Fatality.new(Window: Window)
 		MenuLiber.Size = UDim2.new(1, 0, 1, 0)
 		MenuLiber.ZIndex = 7
 
-		Left.Name = Fatality:RandomString()
-		Left.Parent = MenuLiber
-		Left.Active = true
-		Left.AnchorPoint = Vector2.new(0.5, 0.5)
-		Left.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Left.BackgroundTransparency = 1.000
-		Left.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Left.BorderSizePixel = 0
-		Left.ClipsDescendants = false
-		Left.Position = UDim2.new(0.175, 0, 0.5, 0)
-		Left.Size = UDim2.new(0.32, 0, 1, -5)
-		Left.ScrollBarThickness = 0
-
-		UIListLayout.Parent = Left
-		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout.Padding = UDim.new(0, 5)
-		UIListLayout.VerticalFlex = (Menu.AutoFill and Enum.UIFlexAlignment.Fill) or Enum.UIFlexAlignment.None;
-
-		Center.Name = Fatality:RandomString()
-		Center.Parent = MenuLiber
-		Center.Active = true
-		Center.AnchorPoint = Vector2.new(0.5, 0.5)
-		Center.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Center.BackgroundTransparency = 1.000
-		Center.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Center.BorderSizePixel = 0
-		Center.ClipsDescendants = false
-		Center.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Center.Size = UDim2.new(0.32, 0, 1, -5)
-		Center.ScrollBarThickness = 0
-
-		UIListLayout_2.Parent = Center
-		UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout_2.Padding = UDim.new(0, 5)
-		UIListLayout_2.VerticalFlex = (Menu.AutoFill and Enum.UIFlexAlignment.Fill) or Enum.UIFlexAlignment.None;
-
-		Right.Name = Fatality:RandomString()
-		Right.Parent = MenuLiber
-		Right.Active = true
-		Right.AnchorPoint = Vector2.new(0.5, 0.5)
-		Right.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Right.BackgroundTransparency = 1.000
-		Right.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		Right.BorderSizePixel = 0
-		Right.ClipsDescendants = false
-		Right.Position = UDim2.new(0.825, 0, 0.5, 0)
-		Right.Size = UDim2.new(0.32, 0, 1, -5)
-		Right.ScrollBarThickness = 0
-
-		UIListLayout_3.Parent = Right
-		UIListLayout_3.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		UIListLayout_3.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout_3.Padding = UDim.new(0, 5)
-		UIListLayout_3.VerticalFlex = (Menu.AutoFill and Enum.UIFlexAlignment.Fill) or Enum.UIFlexAlignment.None;
-
 		local BindEvent = Instance.new('BindableEvent',MenuLiber);
 		BindEvent.Name = Fatality:RandomString();
-
-		if not Menu.AutoFill then
-			Fatality:ScrollSignal(Right,UIListLayout_3,'Y');
-			Fatality:ScrollSignal(Center,UIListLayout_2,'Y');
-			Fatality:ScrollSignal(Left,UIListLayout,'Y');
-		else
-			Right.CanvasSize = UDim2.new(0,0,0,0);
-			Left.CanvasSize = UDim2.new(0,0,0,0);
-			Center.CanvasSize = UDim2.new(0,0,0,0);
-		end;
 
 		Fatal.Signal.Event:Connect(function(Bool)
 			if Bool then
@@ -4885,6 +4811,7 @@ function Fatality.new(Window: Window)
 			Config.Name = Config.Name or "SUBTAB"
 
 			local SubTabLib = {}
+			MenuLib._sidebarWidth = 150
 			SubTabLib.Categories = {}
 			SubTabLib.SelectedCategory = nil
 
@@ -5189,153 +5116,226 @@ function Fatality.new(Window: Window)
 			return SubTabLib
 		end
 
-		function MenuLib:AddSection(Config : Section)
-			Config = Config or {};
-			Config.Name = Config.Name or "SECTION";
-			Config.Position = Config.Position or "center";
-			Config.Height = Config.Height or 0;
+		local COLUMN_GAP   = 8
+		local CARD_GAP     = 5
+		local CARD_PADDING = 8
+		local TITLE_HEIGHT = 20
 
-			table.insert(Fatal.ElementContents,{
-				Name = Config.Name,
-				Path = Menu.Name .. " > ".. Config.Name,
-				_TAB = _B
-			});
+		function MenuLib:AddColumns(count)
+			count = math.clamp(count or 1, 1, 3)
 
-			local Section = Instance.new("Frame")
-			local Elements = Instance.new("ScrollingFrame")
-			Elements.Active = true
-			Elements.ScrollBarThickness = 0
-			Elements.CanvasSize = UDim2.new(0, 0, 0, 0)
-			local UIStroke = Instance.new("UIStroke")
-			local UICorner = Instance.new("UICorner")
-			local UIListLayout = Instance.new("UIListLayout")
-			local SpaceBox = Instance.new("Frame")
-			local SectionName = Instance.new("TextLabel")
+			local ColumnsContainer = Instance.new("Frame")
+			ColumnsContainer.Name = Fatality:RandomString()
+			ColumnsContainer.Parent = MenuLiber
+			ColumnsContainer.BackgroundTransparency = 1
+			ColumnsContainer.BorderSizePixel = 0
+			ColumnsContainer.Size = UDim2.new(1, 0, 1, 0)
+			ColumnsContainer.Position = UDim2.new(0, 0, 0, 0)
 
-			local Toggle = function(v)
-				if v then
-					Fatality:CreateAnimation(Section,0.5,{
-						BackgroundTransparency = 0
-					})
+			local function refreshContainerBounds()
+				local sidebarOffset = (MenuLib._sidebarWidth or 0)
+				local totalW = MenuLiber.AbsoluteSize.X - sidebarOffset
+				ColumnsContainer.Position = UDim2.fromOffset(sidebarOffset, 0)
+				ColumnsContainer.Size = UDim2.fromOffset(totalW, MenuLiber.AbsoluteSize.Y)
+			end
 
-					Fatality:CreateAnimation(UIStroke,0.5,{
-						Transparency = 0
-					})
+			MenuLiber:GetPropertyChangedSignal("AbsoluteSize"):Connect(refreshContainerBounds)
+			task.defer(refreshContainerBounds)
 
-					Fatality:CreateAnimation(SectionName,0.5,{
-						TextStrokeTransparency = 0.750,
-						TextTransparency = 0
-					})
-				else
-					Fatality:CreateAnimation(Section,0.5,{
-						BackgroundTransparency = 1
-					})
+			local columnFrames = {}
+			for i = 1, count do
+				local col = Instance.new("Frame")
+				col.Name = Fatality:RandomString()
+				col.Parent = ColumnsContainer
+				col.BackgroundTransparency = 1
+				col.BorderSizePixel = 0
+				columnFrames[i] = col
+			end
 
-					Fatality:CreateAnimation(UIStroke,0.5,{
-						Transparency = 1
-					})
-
-					Fatality:CreateAnimation(SectionName,0.5,{
-						TextStrokeTransparency = 1,
-						TextTransparency = 1
-					})
+			local function layoutColumns()
+				local totalW = ColumnsContainer.AbsoluteSize.X
+				local totalGap = COLUMN_GAP * (count - 1)
+				local colW = math.floor((totalW - totalGap) / count)
+				for i, col in ipairs(columnFrames) do
+					local x = (i - 1) * (colW + COLUMN_GAP)
+					col.Position = UDim2.fromOffset(x, 0)
+					col.Size = UDim2.fromOffset(colW, ColumnsContainer.AbsoluteSize.Y)
 				end
-			end;
+			end
 
-			Section.Name = Fatality:RandomString()
-			Section.Parent = (string.lower(Config.Position) == 'left' and Left) or (string.lower(Config.Position) == 'center' and Center) or Right;
-			Section.BackgroundColor3 = Fatality.Colors.MainBg
-			Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Section.BorderSizePixel = 0
-			Section.ClipsDescendants = true
-			Section.Size = UDim2.new(1, 0, 0, 0)
+			ColumnsContainer:GetPropertyChangedSignal("AbsoluteSize"):Connect(layoutColumns)
+			task.defer(layoutColumns)
 
-			Elements.Name = Fatality:RandomString()
-			Elements.Parent = Section
-			Elements.AnchorPoint = Vector2.new(0.5, 0)
-			Elements.BackgroundColor3 = Fatality.Colors.GroupboxBg
-			Elements.BackgroundTransparency = 0
-			Elements.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			Elements.BorderSizePixel = 0
-			Elements.Position = UDim2.new(0.5, 0, 0, 10)
-			Elements.Size = UDim2.new(1, -5, 1, -11)
+			local function makeColumnLib(colFrame)
+				local ColumnLib = {}
+				local cards = {}
 
-			UIStroke.Color = Color3.fromRGB(255, 255, 255)
-			UIStroke.Parent = Elements
+				local function reflow()
+					if #cards == 0 then return end
 
-			UICorner.CornerRadius = UDim.new(0, 2)
-			UICorner.Parent = Elements
+					local totalH = colFrame.AbsoluteSize.Y
+					local totalGaps = CARD_GAP * (#cards - 1)
+					local available = totalH - totalGaps
+					if available <= 0 then return end
 
-			UIListLayout.Parent = Elements
-			UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-			UIListLayout.Padding = UDim.new(0, 5)
+					local naturalSum = 0
+					for _, c in ipairs(cards) do
+						naturalSum = naturalSum + math.max(c.naturalHeight, 1)
+					end
 
-			SpaceBox.Name = Fatality:RandomString()
-			SpaceBox.Parent = Elements
-			SpaceBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			SpaceBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			SpaceBox.BorderSizePixel = 0
-			SpaceBox.Size = UDim2.new(0, 0, 0, 26)
+					local y = 0
+					for idx, c in ipairs(cards) do
+						local ratio = math.max(c.naturalHeight, 1) / naturalSum
+						local h = math.floor(available * ratio)
+						if idx == #cards then
+							h = totalH - y
+						end
+						c.frame.Position = UDim2.fromOffset(0, y)
+						c.frame.Size = UDim2.fromOffset(colFrame.AbsoluteSize.X, h)
+						y = y + h + CARD_GAP
+					end
+				end
 
-			SectionName.Name = Fatality:RandomString()
-			SectionName.Parent = Section
-			SectionName.BackgroundColor3 = Fatality.Colors.MainBg
-			SectionName.BackgroundTransparency = 0
-			SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
-			SectionName.BorderSizePixel = 0
-			SectionName.Position = UDim2.new(0, 12, 0, 2)
-			SectionName.Size = UDim2.new(0, 0, 0, 16)
-			SectionName.AutomaticSize = Enum.AutomaticSize.X
-			SectionName.ZIndex = Elements.ZIndex + 2
-			SectionName.Font = Enum.Font.GothamBold;
-			SectionName.Text = string.upper(Config.Name)
-			SectionName.TextColor3 = Fatality.Colors.GroupboxHeading
-			SectionName.TextSize = 13.000
-			SectionName.TextStrokeTransparency = 1.000
-			SectionName.TextXAlignment = Enum.TextXAlignment.Left
+				colFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(reflow)
 
-			local SectionNameCorner = Instance.new("UICorner")
-			SectionNameCorner.CornerRadius = UDim.new(1, 0)
-			SectionNameCorner.Parent = SectionName
+				function ColumnLib:AddCard(Config)
+					Config = Config or {}
+					Config.Name = Config.Name or "SECTION"
 
-			local SectionNamePadding = Instance.new("UIPadding")
-			SectionNamePadding.PaddingLeft = UDim.new(0, 6)
-			SectionNamePadding.PaddingRight = UDim.new(0, 6)
-			SectionNamePadding.Parent = SectionName
+					local CardFrame = Instance.new("Frame")
+					CardFrame.Name = Fatality:RandomString()
+					CardFrame.Parent = colFrame
+					CardFrame.BackgroundColor3 = Fatality.Colors.MainBg
+					CardFrame.BorderSizePixel = 0
+					CardFrame.ClipsDescendants = true
+					CardFrame.Size = UDim2.fromOffset(colFrame.AbsoluteSize.X, 100)
 
+					local CardCorner = Instance.new("UICorner")
+					CardCorner.CornerRadius = UDim.new(0, 4)
+					CardCorner.Parent = CardFrame
 
-			UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
-				local contentHeight = UIListLayout.AbsoluteContentSize.Y
-				local MainScale = contentHeight + 30 + Config.Height;
-				local MaxHeight = 360
-				if MainScale > MaxHeight then MainScale = MaxHeight end
-				Elements.CanvasSize = UDim2.new(0, 0, 0, contentHeight + 5)
+					local CardStroke = Instance.new("UIStroke")
+					CardStroke.Color = Fatality.Colors.GroupboxBg
+					CardStroke.Transparency = 0
+					CardStroke.Thickness = 1
+					CardStroke.Parent = CardFrame
 
-				if not Menu.AutoFill then
-					Fatality:CreateAnimation(Section,0.25,{
-						Size = UDim2.new(1, 0, 0, MainScale)
-					})
-				else
-					Section.Size = UDim2.new(1,0,0,MainScale / 2.5);
-				end;
-			end);
+					local TitleLabel = Instance.new("TextLabel")
+					TitleLabel.Name = Fatality:RandomString()
+					TitleLabel.Parent = CardFrame
+					TitleLabel.BackgroundColor3 = Fatality.Colors.MainBg
+					TitleLabel.BackgroundTransparency = 0
+					TitleLabel.BorderSizePixel = 0
+					TitleLabel.Position = UDim2.fromOffset(10, -math.floor(TITLE_HEIGHT / 2))
+					TitleLabel.Size = UDim2.new(0, 0, 0, TITLE_HEIGHT)
+					TitleLabel.AutomaticSize = Enum.AutomaticSize.X
+					TitleLabel.ZIndex = CardFrame.ZIndex + 2
+					TitleLabel.Font = Enum.Font.GothamBold
+					TitleLabel.Text = string.upper(Config.Name)
+					TitleLabel.TextColor3 = Fatality.Colors.GroupboxHeading
+					TitleLabel.TextSize = 12
+					TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			Toggle(BindEvent:GetAttribute('V'));
+					local TitleCorner = Instance.new("UICorner")
+					TitleCorner.CornerRadius = UDim.new(1, 0)
+					TitleCorner.Parent = TitleLabel
 
-			BindEvent.Event:Connect(Toggle);
+					local TitlePadding = Instance.new("UIPadding")
+					TitlePadding.PaddingLeft  = UDim.new(0, 6)
+					TitlePadding.PaddingRight = UDim.new(0, 6)
+					TitlePadding.Parent = TitleLabel
 
-			return Fatality:CreateElements(Elements,Elements.ZIndex,BindEvent,{
-				Path = Menu.Name .. " > ".. Config.Name,
-				Memory = function(Name)
-					table.insert(Fatal.ElementContents,{
-						Name = Name,
-						Path = Menu.Name .. " > ".. Config.Name .. " > " .. Name,
-						_TAB = _B
-					});
-				end,
-			});
-		end;
+					local TitleStroke = Instance.new("UIStroke")
+					TitleStroke.Color = CardStroke.Color
+					TitleStroke.Transparency = CardStroke.Transparency
+					TitleStroke.Thickness = CardStroke.Thickness
+					TitleStroke.Parent = TitleLabel
+
+					local topPad = math.floor(TITLE_HEIGHT / 2) + CARD_PADDING
+					local ContentFrame = Instance.new("ScrollingFrame")
+					ContentFrame.Name = Fatality:RandomString()
+					ContentFrame.Parent = CardFrame
+					ContentFrame.BackgroundColor3 = Fatality.Colors.GroupboxBg
+					ContentFrame.BackgroundTransparency = 0
+					ContentFrame.BorderSizePixel = 0
+					ContentFrame.Position = UDim2.fromOffset(CARD_PADDING, topPad)
+					ContentFrame.Size = UDim2.new(
+						1, -CARD_PADDING * 2,
+						1, -(topPad + CARD_PADDING)
+					)
+					ContentFrame.ClipsDescendants = true
+					ContentFrame.ScrollBarThickness = 0
+					ContentFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+					ContentFrame.ScrollingEnabled = false
+
+					local ContentCorner = Instance.new("UICorner")
+					ContentCorner.CornerRadius = UDim.new(0, 2)
+					ContentCorner.Parent = ContentFrame
+
+					local ContentStroke = Instance.new("UIStroke")
+					ContentStroke.Color = Fatality.Colors.GroupboxBg
+					ContentStroke.Transparency = 0.6
+					ContentStroke.Parent = ContentFrame
+
+					local ContentLayout = Instance.new("UIListLayout")
+					ContentLayout.Parent = ContentFrame
+					ContentLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+					ContentLayout.SortOrder = Enum.SortOrder.LayoutOrder
+					ContentLayout.Padding = UDim.new(0, 5)
+
+					local SpaceBox = Instance.new("Frame")
+					SpaceBox.Parent = ContentFrame
+					SpaceBox.BackgroundTransparency = 1
+					SpaceBox.Size = UDim2.new(0, 0, 0, topPad - CARD_PADDING + 4)
+
+					local cardEntry = { frame = CardFrame, naturalHeight = 60 }
+					table.insert(cards, cardEntry)
+
+					ContentLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+						local contentH = ContentLayout.AbsoluteContentSize.Y
+						cardEntry.naturalHeight = contentH + topPad + CARD_PADDING + 10
+						reflow()
+					end)
+
+					local function Toggle(v)
+						local tr = v and 0 or 1
+						Fatality:CreateAnimation(CardFrame,   0.45, { BackgroundTransparency = tr })
+						Fatality:CreateAnimation(CardStroke,  0.45, { Transparency = tr })
+						Fatality:CreateAnimation(TitleLabel,  0.45, { TextTransparency = tr, BackgroundTransparency = tr })
+						Fatality:CreateAnimation(TitleStroke, 0.45, { Transparency = tr })
+						Fatality:CreateAnimation(ContentFrame,0.45, { BackgroundTransparency = tr })
+						Fatality:CreateAnimation(ContentStroke,0.45,{ Transparency = v and 0.6 or 1 })
+					end
+
+					Toggle(BindEvent:GetAttribute("V"))
+					BindEvent.Event:Connect(Toggle)
+
+					return Fatality:CreateElements(
+						ContentFrame,
+						ContentFrame.ZIndex,
+						BindEvent,
+						{
+							Path   = Menu.Name .. " > " .. Config.Name,
+							Memory = function(Name)
+								table.insert(Fatal.ElementContents, {
+									Name  = Name,
+									Path  = Menu.Name .. " > " .. Config.Name .. " > " .. Name,
+									_TAB  = _B,
+								})
+							end,
+						}
+					)
+				end
+
+				return ColumnLib
+			end
+
+			local libs = {}
+			for i = 1, count do
+				libs[i] = makeColumnLib(columnFrames[i])
+			end
+			return table.unpack(libs)
+		end
 
 		return MenuLib;
 	end;
