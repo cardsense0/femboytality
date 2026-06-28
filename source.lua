@@ -3631,10 +3631,10 @@ function Fatality.new(Window: Window)
 	HeaderText.Position = UDim2.new(0, 5, 0.5, 0)
 	HeaderText.Size = UDim2.new(0, 100, 0.699999988, 0)
 	HeaderText.ZIndex = 4
-	HeaderText.Font = Enum.Font.GothamBold
+	HeaderText.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 	HeaderText.Text = Window.Name
 	HeaderText.TextColor3 = Fatality.Colors.HeadingText
-	HeaderText.TextSize = 20
+	HeaderText.TextSize = 16
 	HeaderText.TextStrokeTransparency = 1.0
 	HeaderText.RichText = false
 
@@ -5031,8 +5031,8 @@ function Fatality.new(Window: Window)
 				CatLeft.Active = true
 				CatLeft.BackgroundTransparency = 1.000
 				CatLeft.BorderSizePixel = 0
-				CatLeft.Position = UDim2.new(0, 0, 0, 0)
-				CatLeft.Size = UDim2.new(0.48, 0, 1, -5)
+				CatLeft.Position = UDim2.new(0, 0, 0, 10)
+				CatLeft.Size = UDim2.new(0.48, 0, 1, -30)
 				CatLeft.ScrollBarThickness = 0
 				local UIListLayoutLeft = Instance.new("UIListLayout")
 				UIListLayoutLeft.Parent = CatLeft
@@ -5045,8 +5045,8 @@ function Fatality.new(Window: Window)
 				CatRight.Active = true
 				CatRight.BackgroundTransparency = 1.000
 				CatRight.BorderSizePixel = 0
-				CatRight.Position = UDim2.new(0.52, 0, 0, 0)
-				CatRight.Size = UDim2.new(0.48, 0, 1, -5)
+				CatRight.Position = UDim2.new(0.52, 0, 0, 10)
+				CatRight.Size = UDim2.new(0.48, 0, 1, -30)
 				CatRight.ScrollBarThickness = 0
 				local UIListLayoutRight = Instance.new("UIListLayout")
 				UIListLayoutRight.Parent = CatRight
@@ -5091,7 +5091,10 @@ function Fatality.new(Window: Window)
 					});
 
 					local Section = Instance.new("Frame")
-					local Elements = Instance.new("Frame")
+					local Elements = Instance.new("ScrollingFrame")
+					Elements.Active = true
+					Elements.ScrollBarThickness = 0
+					Elements.CanvasSize = UDim2.new(0, 0, 0, 0)
 					local UIStroke = Instance.new("UIStroke")
 					local UICorner = Instance.new("UICorner")
 					local UIListLayout = Instance.new("UIListLayout")
@@ -5161,7 +5164,11 @@ function Fatality.new(Window: Window)
 					SectionNamePadding.Parent = SectionName
 
 					UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
-						local MainScale = UIListLayout.AbsoluteContentSize.Y + 30 + Config.Height;
+						local contentHeight = UIListLayout.AbsoluteContentSize.Y
+						local MainScale = contentHeight + 30 + Config.Height;
+						local MaxHeight = 360
+						if MainScale > MaxHeight then MainScale = MaxHeight end
+						Elements.CanvasSize = UDim2.new(0, 0, 0, contentHeight + 5)
 
 						if not Menu.AutoFill then
 							Fatality:CreateAnimation(Section,0.25,{
@@ -5196,7 +5203,10 @@ function Fatality.new(Window: Window)
 			});
 
 			local Section = Instance.new("Frame")
-			local Elements = Instance.new("Frame")
+			local Elements = Instance.new("ScrollingFrame")
+			Elements.Active = true
+			Elements.ScrollBarThickness = 0
+			Elements.CanvasSize = UDim2.new(0, 0, 0, 0)
 			local UIStroke = Instance.new("UIStroke")
 			local UICorner = Instance.new("UICorner")
 			local UIListLayout = Instance.new("UIListLayout")
@@ -5297,7 +5307,11 @@ function Fatality.new(Window: Window)
 
 
 			UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
-				local MainScale = UIListLayout.AbsoluteContentSize.Y + 30 + Config.Height;
+				local contentHeight = UIListLayout.AbsoluteContentSize.Y
+				local MainScale = contentHeight + 30 + Config.Height;
+				local MaxHeight = 360
+				if MainScale > MaxHeight then MainScale = MaxHeight end
+				Elements.CanvasSize = UDim2.new(0, 0, 0, contentHeight + 5)
 
 				if not Menu.AutoFill then
 					Fatality:CreateAnimation(Section,0.25,{
