@@ -289,7 +289,7 @@ Fatality.Colors = {
 	GroupboxHeading = Color3.fromRGB(62, 63, 70),
 	GroupboxBg = Color3.fromRGB(226, 228, 230),
 	FeatureText = Color3.fromRGB(56, 58, 60),
-	Accent = Color3.fromRGB(192, 155, 168),
+	Accent = Color3.fromRGB(37, 150, 190),
 	
 	Black = Color3.fromRGB(212, 214, 218),
 	Main = Color3.fromRGB(192, 155, 168)
@@ -3605,7 +3605,7 @@ function Fatality.new(Window: Window)
 	Header.BackgroundColor3 = Fatality.Colors.TopBarBg
 	Header.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Header.BorderSizePixel = 0
-	Header.Size = UDim2.new(1, 0, 0, 40)
+	Header.Size = UDim2.new(1, 0, 0, 32)
 	Header.ZIndex = 2
 
 	HeaderLine.Name = Fatality:RandomString()
@@ -3634,9 +3634,9 @@ function Fatality.new(Window: Window)
 	HeaderText.Font = Enum.Font.GothamBold
 	HeaderText.Text = Window.Name
 	HeaderText.TextColor3 = Fatality.Colors.HeadingText
-	HeaderText.TextSize = 21.000
-	
+	HeaderText.TextSize = 18.000
 	HeaderText.TextStrokeTransparency = 1.0
+	HeaderText.RichText = false
 
 	MenuButtonCont.Name = Fatality:RandomString()
 	MenuButtonCont.Parent = Header
@@ -3679,7 +3679,7 @@ function Fatality.new(Window: Window)
 	UserProfle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	UserProfle.BorderSizePixel = 0
 	UserProfle.Position = UDim2.new(1, -5, 0.5, 0)
-	UserProfle.Size = UDim2.new(0, 150, 0.75, 0)
+	UserProfle.Size = UDim2.new(0, 150, 1, 0)
 	UserProfle.ZIndex = 4
 
 	UserIcon.Name = Fatality:RandomString()
@@ -3757,8 +3757,8 @@ function Fatality.new(Window: Window)
 	MenuFrame.BackgroundTransparency = 1.000
 	MenuFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MenuFrame.BorderSizePixel = 0
-	MenuFrame.Position = UDim2.new(0, 0, 0, 41)
-	MenuFrame.Size = UDim2.new(1, 0, 1, -73)
+	MenuFrame.Position = UDim2.new(0, 0, 0, 32)
+	MenuFrame.Size = UDim2.new(1, 0, 1, -57)
 
 	Bottom.Name = Fatality:RandomString()
 	Bottom.Parent = FatalFrame
@@ -3768,7 +3768,7 @@ function Fatality.new(Window: Window)
 	Bottom.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Bottom.BorderSizePixel = 0
 	Bottom.Position = UDim2.new(0, 0, 1, 0)
-	Bottom.Size = UDim2.new(1, 0, 0, 25)
+	Bottom.Size = UDim2.new(1, 0, 0, 22)
 	Bottom.ZIndex = 2
 
 	HeaderLine_2.Name = Fatality:RandomString()
@@ -4008,11 +4008,11 @@ function Fatality.new(Window: Window)
 		menu_name.Position = UDim2.new(0, 28, 0.5, 0)
 		menu_name.Size = UDim2.new(1, 0, 1, 0)
 		menu_name.ZIndex = 5
-		menu_name.Font = Enum.Font.GothamBold
+		menu_name.Font = Enum.Font.GothamMedium
 		menu_name.Text = Menu.Name
 		menu_name.TextColor3 = Fatality.Colors.FeatureText
-		menu_name.TextSize = 13.000
-		menu_name.TextStrokeTransparency = 0.900
+		menu_name.TextSize = 12.000
+		menu_name.TextStrokeTransparency = 1
 		menu_name.TextTransparency = 0.150
 		menu_name.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -5103,22 +5103,35 @@ function Fatality.new(Window: Window)
 					SpaceBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					SpaceBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					SpaceBox.BorderSizePixel = 0
-					SpaceBox.Size = UDim2.new(0, 0, 0, 10)
+					SpaceBox.Size = UDim2.new(0, 0, 0, 24)
 
 					SectionName.Name = Fatality:RandomString()
-					SectionName.Parent = Section
-					SectionName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-					SectionName.BackgroundTransparency = 1.000
+					SectionName.Parent = Elements
+					SectionName.BackgroundColor3 = Fatality.Colors.GroupboxBg
+					SectionName.BackgroundTransparency = 0
 					SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					SectionName.BorderSizePixel = 0
-					SectionName.Position = UDim2.new(0, 10, 0, 0)
-					SectionName.Size = UDim2.new(1, 0, 0, 15)
+					SectionName.Position = UDim2.new(0, 8, 0, 5)
+					SectionName.Size = UDim2.new(0, 0, 0, 14)
+					SectionName.AutomaticSize = Enum.AutomaticSize.X
+					SectionName.ZIndex = Elements.ZIndex + 2
 					SectionName.Font = Enum.Font.GothamBold;
 					SectionName.Text = string.upper(Config.Name)
 					SectionName.TextColor3 = Fatality.Colors.GroupboxHeading
 					SectionName.TextSize = 13.000
 					SectionName.TextStrokeTransparency = 1.000
 					SectionName.TextXAlignment = Enum.TextXAlignment.Left
+
+					local SectionNameCorner = Instance.new("UICorner")
+					SectionNameCorner.CornerRadius = UDim.new(1, 0)
+					SectionNameCorner.Parent = SectionName
+
+					local SectionNamePadding = Instance.new("UIPadding")
+					SectionNamePadding.PaddingLeft = UDim.new(0, 6)
+					SectionNamePadding.PaddingRight = UDim.new(0, 6)
+					SectionNamePadding.PaddingTop = UDim.new(0, 2)
+					SectionNamePadding.PaddingBottom = UDim.new(0, 2)
+					SectionNamePadding.Parent = SectionName
 
 					UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
 						local MainScale = UIListLayout.AbsoluteContentSize.Y + 20 + Config.Height;
@@ -5227,22 +5240,35 @@ function Fatality.new(Window: Window)
 			SpaceBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			SpaceBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SpaceBox.BorderSizePixel = 0
-			SpaceBox.Size = UDim2.new(0, 0, 0, 10)
+			SpaceBox.Size = UDim2.new(0, 0, 0, 24)
 
 			SectionName.Name = Fatality:RandomString()
-			SectionName.Parent = Section
-			SectionName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			SectionName.BackgroundTransparency = 1.000
+			SectionName.Parent = Elements
+			SectionName.BackgroundColor3 = Fatality.Colors.GroupboxBg
+			SectionName.BackgroundTransparency = 0
 			SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SectionName.BorderSizePixel = 0
-			SectionName.Position = UDim2.new(0, 10, 0, 0)
-			SectionName.Size = UDim2.new(1, 0, 0, 15)
+			SectionName.Position = UDim2.new(0, 8, 0, 5)
+			SectionName.Size = UDim2.new(0, 0, 0, 14)
+			SectionName.AutomaticSize = Enum.AutomaticSize.X
+			SectionName.ZIndex = Elements.ZIndex + 2
 			SectionName.Font = Enum.Font.GothamBold;
 			SectionName.Text = string.upper(Config.Name)
 			SectionName.TextColor3 = Fatality.Colors.GroupboxHeading
 			SectionName.TextSize = 13.000
 			SectionName.TextStrokeTransparency = 1.000
 			SectionName.TextXAlignment = Enum.TextXAlignment.Left
+
+			local SectionNameCorner = Instance.new("UICorner")
+			SectionNameCorner.CornerRadius = UDim.new(1, 0)
+			SectionNameCorner.Parent = SectionName
+
+			local SectionNamePadding = Instance.new("UIPadding")
+			SectionNamePadding.PaddingLeft = UDim.new(0, 6)
+			SectionNamePadding.PaddingRight = UDim.new(0, 6)
+			SectionNamePadding.PaddingTop = UDim.new(0, 2)
+			SectionNamePadding.PaddingBottom = UDim.new(0, 2)
+			SectionNamePadding.Parent = SectionName
 
 
 			UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
