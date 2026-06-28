@@ -289,7 +289,7 @@ Fatality.Colors = {
 	GroupboxHeading = Color3.fromRGB(62, 63, 70),
 	GroupboxBg = Color3.fromRGB(226, 228, 230),
 	FeatureText = Color3.fromRGB(56, 58, 60),
-	Accent = Color3.fromRGB(192, 155, 168),
+	Accent = Color3.fromRGB(224, 146, 166),
 	
 	Black = Color3.fromRGB(212, 214, 218),
 	Main = Color3.fromRGB(192, 155, 168)
