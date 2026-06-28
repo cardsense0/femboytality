@@ -289,7 +289,7 @@ Fatality.Colors = {
 	GroupboxHeading = Color3.fromRGB(62, 63, 70),
 	GroupboxBg = Color3.fromRGB(226, 228, 230),
 	FeatureText = Color3.fromRGB(56, 58, 60),
-	Accent = Color3.fromRGB(37, 150, 190),
+	Accent = Color3.fromRGB(222, 147, 166),
 	
 	Black = Color3.fromRGB(212, 214, 218),
 	Main = Color3.fromRGB(192, 155, 168)
@@ -3634,7 +3634,7 @@ function Fatality.new(Window: Window)
 	HeaderText.Font = Enum.Font.GothamBold
 	HeaderText.Text = Window.Name
 	HeaderText.TextColor3 = Fatality.Colors.HeadingText
-	HeaderText.TextSize = 18.000
+	HeaderText.TextSize = 17
 	HeaderText.TextStrokeTransparency = 1.0
 	HeaderText.RichText = false
 
@@ -3730,7 +3730,7 @@ function Fatality.new(Window: Window)
 	expire_days.Size = UDim2.new(0, 200, 0, 15)
 	expire_days.ZIndex = 4
 	expire_days.Font = Enum.Font.GothamMedium
-	expire_days.Text = string.format("<font transparency=\"0.5\">expires:</font> <font color=\"#f53174\">%s</font>",Window.Expire)
+	expire_days.Text = string.format("<font transparency=\"0.5\">expires:</font> <font color=\"#de93a6\">%s</font>",Window.Expire)
 	expire_days.TextColor3 = Fatality.Colors.HeadingText
 	expire_days.TextSize = 12.000
 	expire_days.TextStrokeTransparency = 1.0
@@ -3758,7 +3758,7 @@ function Fatality.new(Window: Window)
 	MenuFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MenuFrame.BorderSizePixel = 0
 	MenuFrame.Position = UDim2.new(0, 0, 0, 32)
-	MenuFrame.Size = UDim2.new(1, 0, 1, -57)
+	MenuFrame.Size = UDim2.new(1, 0, 1, -54)
 
 	Bottom.Name = Fatality:RandomString()
 	Bottom.Parent = FatalFrame
@@ -3820,7 +3820,7 @@ function Fatality.new(Window: Window)
 	end;
 
 	function Fatal:SetExpire(str: string)
-		expire_days.Text = string.format("<font transparency=\"0.5\">expires:</font> <font color=\"#f53174\">%s</font>",str)
+		expire_days.Text = string.format("<font transparency=\"0.5\">expires:</font> <font color=\"#de93a6\">%s</font>",str)
 	end;
 
 	function Fatal:GetFlags()
@@ -4895,6 +4895,11 @@ function Fatality.new(Window: Window)
 			SubTabButton.Text = Config.Name
 			SubTabButton.TextColor3 = Fatality.Colors.InactiveTab
 			SubTabButton.TextSize = 13.000
+			SubTabButton.TextXAlignment = Enum.TextXAlignment.Left
+
+			local SubTabPadding = Instance.new("UIPadding")
+			SubTabPadding.PaddingLeft = UDim.new(0, 10)
+			SubTabPadding.Parent = SubTabButton
 
 			local SubTabUnderline = Instance.new("Frame")
 			SubTabUnderline.Name = Fatality:RandomString()
@@ -4904,6 +4909,18 @@ function Fatality.new(Window: Window)
 			SubTabUnderline.Position = UDim2.new(0, 10, 1, -2)
 			SubTabUnderline.Size = UDim2.new(1, -20, 0, 2)
 			SubTabUnderline.Visible = false
+
+			local AccentLine = Instance.new("Frame")
+			AccentLine.Name = Fatality:RandomString()
+			AccentLine.Parent = SubTabButton
+			AccentLine.BackgroundColor3 = Fatality.Colors.Accent
+			AccentLine.BorderSizePixel = 0
+			AccentLine.Position = UDim2.new(0, 0, 0.1, 0)
+			AccentLine.Size = UDim2.new(0, 2, 0.8, 0)
+			AccentLine.Visible = false
+			local AccentLineCorner = Instance.new("UICorner")
+			AccentLineCorner.CornerRadius = UDim.new(1, 0)
+			AccentLineCorner.Parent = AccentLine
 
 			local SubTabFrame = Instance.new("Frame")
 			SubTabFrame.Name = Fatality:RandomString()
@@ -4947,12 +4964,14 @@ function Fatality.new(Window: Window)
 			local function ValueSelect(bool)
 				if bool then
 					MenuLib.SelectedSubTab = SubTabLib
-					Fatality:CreateAnimation(SubTabButton, 0.25, {TextColor3 = Fatality.Colors.HeadingText})
-					SubTabUnderline.Visible = true
+					SubTabButton.TextColor3 = Fatality.Colors.ActiveTab
+					SubTabUnderline.Visible = false
+					SubTabButton.BorderSizePixel = 0
+					AccentLine.Visible = true
 					SubTabFrame.Visible = true
 				else
-					Fatality:CreateAnimation(SubTabButton, 0.25, {TextColor3 = Fatality.Colors.InactiveTab})
-					SubTabUnderline.Visible = false
+					SubTabButton.TextColor3 = Fatality.Colors.InactiveTab
+					AccentLine.Visible = false
 					SubTabFrame.Visible = false
 				end
 			end
@@ -5103,7 +5122,7 @@ function Fatality.new(Window: Window)
 					SpaceBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					SpaceBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					SpaceBox.BorderSizePixel = 0
-					SpaceBox.Size = UDim2.new(0, 0, 0, 24)
+					SpaceBox.Size = UDim2.new(0, 0, 0, 26)
 
 					SectionName.Name = Fatality:RandomString()
 					SectionName.Parent = Elements
@@ -5111,8 +5130,8 @@ function Fatality.new(Window: Window)
 					SectionName.BackgroundTransparency = 0
 					SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					SectionName.BorderSizePixel = 0
-					SectionName.Position = UDim2.new(0, 8, 0, 5)
-					SectionName.Size = UDim2.new(0, 0, 0, 14)
+					SectionName.Position = UDim2.new(0, 8, 0, 4)
+					SectionName.Size = UDim2.new(0, 0, 0, 16)
 					SectionName.AutomaticSize = Enum.AutomaticSize.X
 					SectionName.ZIndex = Elements.ZIndex + 2
 					SectionName.Font = Enum.Font.GothamBold;
@@ -5129,8 +5148,6 @@ function Fatality.new(Window: Window)
 					local SectionNamePadding = Instance.new("UIPadding")
 					SectionNamePadding.PaddingLeft = UDim.new(0, 6)
 					SectionNamePadding.PaddingRight = UDim.new(0, 6)
-					SectionNamePadding.PaddingTop = UDim.new(0, 2)
-					SectionNamePadding.PaddingBottom = UDim.new(0, 2)
 					SectionNamePadding.Parent = SectionName
 
 					UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
@@ -5240,7 +5257,7 @@ function Fatality.new(Window: Window)
 			SpaceBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			SpaceBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SpaceBox.BorderSizePixel = 0
-			SpaceBox.Size = UDim2.new(0, 0, 0, 24)
+			SpaceBox.Size = UDim2.new(0, 0, 0, 26)
 
 			SectionName.Name = Fatality:RandomString()
 			SectionName.Parent = Elements
@@ -5248,8 +5265,8 @@ function Fatality.new(Window: Window)
 			SectionName.BackgroundTransparency = 0
 			SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SectionName.BorderSizePixel = 0
-			SectionName.Position = UDim2.new(0, 8, 0, 5)
-			SectionName.Size = UDim2.new(0, 0, 0, 14)
+			SectionName.Position = UDim2.new(0, 8, 0, 4)
+			SectionName.Size = UDim2.new(0, 0, 0, 16)
 			SectionName.AutomaticSize = Enum.AutomaticSize.X
 			SectionName.ZIndex = Elements.ZIndex + 2
 			SectionName.Font = Enum.Font.GothamBold;
@@ -5266,8 +5283,6 @@ function Fatality.new(Window: Window)
 			local SectionNamePadding = Instance.new("UIPadding")
 			SectionNamePadding.PaddingLeft = UDim.new(0, 6)
 			SectionNamePadding.PaddingRight = UDim.new(0, 6)
-			SectionNamePadding.PaddingTop = UDim.new(0, 2)
-			SectionNamePadding.PaddingBottom = UDim.new(0, 2)
 			SectionNamePadding.Parent = SectionName
 
 
