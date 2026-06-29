@@ -3448,17 +3448,17 @@ function Fatality.new(Window: Window)
 
 			Fatality:CreateAnimation(UserIcon,0.45,{
 				ImageTransparency = 0,
-				Position = UDim2.new(1, -10,0.5, 0)
+				Position = UDim2.new(1, 0, 0.5, 0)
 			})
 
 			Fatality:CreateAnimation(User_name,0.35,{
 				TextTransparency = 0,
-				Position = UDim2.new(1, -40,0, 3)
+				Position = UDim2.new(1, -33, 0.5, -1)
 			})
 
 			Fatality:CreateAnimation(expire_days,0.5,{
 				TextTransparency = 0,
-				Position = UDim2.new(1, -40,0, 16)
+				Position = UDim2.new(1, -33, 0.5, 1)
 			})
 
 			Fatality:CreateAnimation(UIStroke,0.35,{
@@ -3507,17 +3507,17 @@ function Fatality.new(Window: Window)
 
 			Fatality:CreateAnimation(UserIcon,0.35,{
 				ImageTransparency = 1,
-				Position = UDim2.new(1, -10,0.5, 0)
+				Position = UDim2.new(1, 0, 0.5, 0)
 			})
 
 			Fatality:CreateAnimation(User_name,0.35,{
 				TextTransparency = 1,
-				Position = UDim2.new(1, -40,0, 3)
+				Position = UDim2.new(1, -33, 0.5, -1)
 			})
 
 			Fatality:CreateAnimation(expire_days,0.1,{
 				TextTransparency = 1,
-				Position = UDim2.new(1, -40,0, 16)
+				Position = UDim2.new(1, -33, 0.5, 1)
 			})
 
 			Fatality:CreateAnimation(HeaderText,0.35,{
@@ -5035,6 +5035,7 @@ function Fatality.new(Window: Window)
 				SubTabContentArea.Position = UDim2.new(0, 0, 0, 0)
 				SubTabContentArea.Size = UDim2.new(1, 0, 1, 0)
 				MenuLib._sidebarWidth = 0
+				MenuLib._hasSidebar = false
 				ValueSelect(true)
 			else
 				SubTabBar.Visible = true
@@ -5042,7 +5043,7 @@ function Fatality.new(Window: Window)
 				SubTabContentArea.Position = UDim2.new(0, 127, 0, 0)
 				SubTabContentArea.Size = UDim2.new(1, -127, 1, 0)
 				MenuLib._sidebarWidth = 127
-
+				MenuLib._hasSidebar = true
 			end
 
 			function SubTabLib:AddSidebarCategory(Config)
