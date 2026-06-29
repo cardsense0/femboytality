@@ -3717,7 +3717,7 @@ function Fatality.new(Window: Window)
 	UserProfle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	UserProfle.BorderSizePixel = 0
 	UserProfle.Position = UDim2.new(1, -8, 0.5, 0)
-	UserProfle.Size = UDim2.new(0, 200, 1, 0)
+	UserProfle.Size = UDim2.fromOffset(220, 50)
 	UserProfle.ZIndex = 4
 
 	UserIcon.Name = Fatality:RandomString()
@@ -3727,7 +3727,7 @@ function Fatality.new(Window: Window)
 	UserIcon.BackgroundTransparency = 1.000
 	UserIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	UserIcon.BorderSizePixel = 0
-	UserIcon.Position = UDim2.new(1, -8, 0.5, 0)
+	UserIcon.Position = UDim2.new(1, 0, 0.5, 0)
 	UserIcon.Size = UDim2.fromOffset(28, 28)
 	UserIcon.ZIndex = 5
 	UserIcon.Image = Players:GetUserThumbnailAsync(Client.UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size180x180);
@@ -3741,13 +3741,13 @@ function Fatality.new(Window: Window)
 
 	User_name.Name = Fatality:RandomString()
 	User_name.Parent = UserProfle
-	User_name.AnchorPoint = Vector2.new(1, 0)
+	User_name.AnchorPoint = Vector2.new(1, 1)
 	User_name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	User_name.BackgroundTransparency = 1.000
 	User_name.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	User_name.BorderSizePixel = 0
-	User_name.Position = UDim2.new(1, -36, 0, 6)
-	User_name.Size = UDim2.new(0, 200, 0, 15)
+	User_name.Position = UDim2.new(1, -33, 0.5, -1)
+	User_name.Size = UDim2.fromOffset(180, 14)
 	User_name.ZIndex = 4
 	User_name.Font = Enum.Font.GothamMedium
 	User_name.Text = Client.DisplayName;
@@ -3763,13 +3763,13 @@ function Fatality.new(Window: Window)
 	expire_days.BackgroundTransparency = 1.000
 	expire_days.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	expire_days.BorderSizePixel = 0
-	expire_days.Position = UDim2.new(1, -36, 0, 20)
-	expire_days.Size = UDim2.new(0, 200, 0, 15)
+	expire_days.Position = UDim2.new(1, -33, 0.5, 1)
+	expire_days.Size = UDim2.fromOffset(180, 12)
 	expire_days.ZIndex = 4
 	expire_days.Font = Enum.Font.GothamMedium
 	expire_days.Text = string.format("<font transparency=\"0.5\">expires:</font> <font color=\"#de93a6\">%s</font>",Window.Expire)
 	expire_days.TextColor3 = Fatality.Colors.HeadingText
-	expire_days.TextSize = 12.000
+	expire_days.TextSize = 11.000
 	expire_days.TextStrokeTransparency = 1.0
 	expire_days.TextXAlignment = Enum.TextXAlignment.Right
 	expire_days.RichText = true;
@@ -4895,43 +4895,50 @@ function Fatality.new(Window: Window)
 			SubTabUnderline.Visible = false
 
 			-- Accent indicator: 2x19px, 14px from left edge of menu, vertically centered
+			local AccentOuterWrapper = Instance.new("Frame")
+			AccentOuterWrapper.Name = Fatality:RandomString()
+			AccentOuterWrapper.Parent = SubTabBar
+			AccentOuterWrapper.BackgroundTransparency = 1
+			AccentOuterWrapper.BorderSizePixel = 0
+			AccentOuterWrapper.AnchorPoint = Vector2.new(0, 0.5)
+			AccentOuterWrapper.Position = UDim2.new(0, 14, 0, 17 + (#MenuLib.SubTabs * 29) + 14.5)
+			AccentOuterWrapper.Size = UDim2.fromOffset(8, 25)
+			AccentOuterWrapper.ClipsDescendants = false
+
 			local AccentWrapper = Instance.new("Frame")
 			AccentWrapper.Name = Fatality:RandomString()
-			AccentWrapper.Parent = SubTabButton
+			AccentWrapper.Parent = AccentOuterWrapper
 			AccentWrapper.BackgroundTransparency = 1
 			AccentWrapper.BorderSizePixel = 0
 			AccentWrapper.AnchorPoint = Vector2.new(0, 0.5)
-			AccentWrapper.Position = UDim2.new(0, -8, 0.5, 0)
+			AccentWrapper.Position = UDim2.new(0, 0, 0.5, 0)
 			AccentWrapper.Size = UDim2.fromOffset(2, 19)
 			AccentWrapper.ClipsDescendants = true
+			AccentWrapper.ZIndex = 10
 
 			local AccentLine = Instance.new("Frame")
 			AccentLine.Name = Fatality:RandomString()
 			AccentLine.Parent = AccentWrapper
-			AccentLine.BackgroundColor3 = Fatality.Colors.Accent
+			AccentLine.BackgroundColor3 = Color3.fromHex("ca9aa9")
 			AccentLine.BorderSizePixel = 0
 			AccentLine.Position = UDim2.fromOffset(0, -19)
 			AccentLine.Size = UDim2.fromOffset(2, 0)
+			AccentLine.ZIndex = 11
 
 			local AccentLineCorner = Instance.new("UICorner")
 			AccentLineCorner.CornerRadius = UDim.new(1, 0)
 			AccentLineCorner.Parent = AccentLine
 
-			local AccentStroke = Instance.new("UIStroke")
-			AccentStroke.Color = Color3.fromHex("ca9aa9")
-			AccentStroke.Thickness = 3
-			AccentStroke.Transparency = 0.7
-			AccentStroke.Parent = AccentLine
-
 			local AccentBloom = Instance.new("Frame")
 			AccentBloom.Name = Fatality:RandomString()
-			AccentBloom.Parent = AccentLine
+			AccentBloom.Parent = AccentOuterWrapper
 			AccentBloom.BackgroundColor3 = Color3.fromHex("ca9aa9")
-			AccentBloom.BackgroundTransparency = 0.85
+			AccentBloom.BackgroundTransparency = 1
 			AccentBloom.BorderSizePixel = 0
 			AccentBloom.AnchorPoint = Vector2.new(0.5, 0.5)
-			AccentBloom.Position = UDim2.fromScale(0.5, 0.5)
+			AccentBloom.Position = UDim2.new(0.5, 0, 0.5, 0)
 			AccentBloom.Size = UDim2.fromOffset(8, 25)
+			AccentBloom.ZIndex = 9
 
 			local AccentBloomCorner = Instance.new("UICorner")
 			AccentBloomCorner.CornerRadius = UDim.new(1, 0)
@@ -4983,12 +4990,33 @@ function Fatality.new(Window: Window)
 					SubTabButton.TextColor3 = Fatality.Colors.ActiveSubtab
 					SubTabUnderline.Visible = false
 					SubTabButton.BorderSizePixel = 0
-					AccentLine.Visible = true
 					SubTabFrame.Visible = true
+					
+					task.spawn(function()
+					    AccentLine.Position = UDim2.fromOffset(0, -19)
+					    AccentLine.Size = UDim2.fromOffset(2, 0)
+					    AccentBloom.BackgroundTransparency = 1
+					    Fatality:CreateAnimation(AccentLine, 0.25, Enum.EasingStyle.Quint, {
+					        Position = UDim2.fromOffset(0, 0),
+					        Size = UDim2.fromOffset(2, 19)
+					    })
+					    Fatality:CreateAnimation(AccentBloom, 0.25, Enum.EasingStyle.Quint, {
+					        BackgroundTransparency = 0.75
+					    })
+					end)
 				else
 					SubTabButton.TextColor3 = Fatality.Colors.InactiveSubtab
-					AccentLine.Visible = false
 					SubTabFrame.Visible = false
+					
+					task.spawn(function()
+					    Fatality:CreateAnimation(AccentLine, 0.25, Enum.EasingStyle.Quint, {
+					        Position = UDim2.fromOffset(0, -19),
+					        Size = UDim2.fromOffset(2, 0)
+					    })
+					    Fatality:CreateAnimation(AccentBloom, 0.25, Enum.EasingStyle.Quint, {
+					        BackgroundTransparency = 1
+					    })
+					end)
 				end
 			end
 
@@ -5225,15 +5253,11 @@ function Fatality.new(Window: Window)
 			ColumnsContainer.Position = UDim2.new(0, 0, 0, 0)
 
 			local function refreshContainerBounds()
-				local sidebarOffset = (MenuLib._sidebarWidth or 0)
-				local padLeft = (sidebarOffset > 0) and 0 or 14
-				local padRight = 14
 				local padTop = 15
 				local padBottom = 15
-				local totalW = MenuLiber.AbsoluteSize.X - sidebarOffset - padLeft - padRight
 				local totalH = MenuLiber.AbsoluteSize.Y - padTop - padBottom
-				ColumnsContainer.Position = UDim2.fromOffset(sidebarOffset + padLeft, padTop)
-				ColumnsContainer.Size = UDim2.fromOffset(totalW, totalH)
+				ColumnsContainer.Position = UDim2.fromOffset(0, padTop)
+				ColumnsContainer.Size = UDim2.fromOffset(MenuLiber.AbsoluteSize.X, totalH)
 			end
 
 			MenuLiber:GetPropertyChangedSignal("AbsoluteSize"):Connect(refreshContainerBounds)
@@ -5250,11 +5274,27 @@ function Fatality.new(Window: Window)
 			end
 
 			local function layoutColumns()
-				local totalW = ColumnsContainer.AbsoluteSize.X
-				local totalGap = COLUMN_GAP * (count - 1)
-				local colW = math.floor((totalW - totalGap) / count)
+				local hasSub = MenuLib._hasSidebar
+				local colW = 264
+				local gap = 14
+				local leftOffset = 14
+				
+				if hasSub then
+					leftOffset = 127
+					if count == 3 then colW = 226
+					elseif count == 2 then colW = 270
+					elseif count == 1 then colW = 256
+					end
+				else
+					leftOffset = 14
+					if count == 3 then colW = 264
+					elseif count == 2 then colW = 264
+					elseif count == 1 then colW = 264
+					end
+				end
+				
 				for i, col in ipairs(columnFrames) do
-					local x = (i - 1) * (colW + COLUMN_GAP)
+					local x = leftOffset + (i - 1) * (colW + gap)
 					col.Position = UDim2.fromOffset(x, 0)
 					col.Size = UDim2.fromOffset(colW, ColumnsContainer.AbsoluteSize.Y)
 				end
