@@ -518,7 +518,7 @@ function Fatality:CreateOption(OptionButton: ImageButton): Elements
 	ExtElementFrame.Size = UDim2.new(0, 200, 0, 0)
 	ExtElementFrame.ZIndex = 100
 
-	UICorner.CornerRadius = UDim.new(0, 2)
+	UICorner.CornerRadius = UDim.new(0, 4)
 	UICorner.Parent = ExtElementFrame
 
 	UIStroke.Color = Fatality.Colors.Outlines
@@ -885,7 +885,7 @@ function Fatality:CreateColorPicker(ColorBox: Frame,Transparency, Callback)
 	ColorPickerFrame.ZIndex = 200
 	Fatality:AddDragBlacklist(ColorPickerFrame);
 
-	UICorner.CornerRadius = UDim.new(0, 2)
+	UICorner.CornerRadius = UDim.new(0, 4)
 	UICorner.Parent = ColorPickerFrame
 
 	UIStroke.Color = Fatality.Colors.Outlines
@@ -928,7 +928,7 @@ function Fatality:CreateColorPicker(ColorBox: Frame,Transparency, Callback)
 	MouseMovement.Image = "rbxassetid://4805639000"
 	MouseMovement.AnchorPoint = Vector2.new(0.5,0.5)
 
-	UICorner_2.CornerRadius = UDim.new(0, 2)
+	UICorner_2.CornerRadius = UDim.new(0, 4)
 	UICorner_2.Parent = ColorPickBox
 
 	UIStroke_2.Color = Fatality.Colors.Outlines
@@ -975,7 +975,7 @@ function Fatality:CreateColorPicker(ColorBox: Frame,Transparency, Callback)
 	ColorOpc.Size = UDim2.new(1, -15, 0, 12)
 	ColorOpc.ZIndex = 206
 
-	UICorner_4.CornerRadius = UDim.new(0, 2)
+	UICorner_4.CornerRadius = UDim.new(0, 4)
 	UICorner_4.Parent = ColorOpc
 
 	ColorOptSlide.Name = Fatality:RandomString()
@@ -1009,7 +1009,7 @@ function Fatality:CreateColorPicker(ColorBox: Frame,Transparency, Callback)
 	ColorOpt.Size = UDim2.new(1, -15, 0, 18)
 	ColorOpt.ZIndex = 206
 
-	UICorner_5.CornerRadius = UDim.new(0, 2)
+	UICorner_5.CornerRadius = UDim.new(0, 4)
 	UICorner_5.Parent = ColorOpt
 
 	PasteButton.Name = Fatality:RandomString()
@@ -1715,7 +1715,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 			end;
 		end)
 
-		Fatality:NewInput(ValueFrame,function()
+		Fatality:NewInput(Toggle,function()
 			Config.Default = not Config.Default;
 			toggleImg(Config.Default);
 			Config.Callback(Config.Default)
@@ -1816,7 +1816,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Size = UDim2.new(0, 85, 0.600000024, 0)
 		ValueFrame.ZIndex = ZIndex + 2
 
-		UICorner.CornerRadius = UDim.new(0, 2)
+		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = ValueFrame
 
 		OptionButton.Name = Fatality:RandomString()
@@ -1842,7 +1842,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		boxli.Size = UDim2.new((Config.Default - Config.Min) / (Config.Max - Config.Min), 0, 1, 0)
 		boxli.ZIndex = ZIndex + 3
 
-		UICorner_2.CornerRadius = UDim.new(0, 2)
+		UICorner_2.CornerRadius = UDim.new(0, 4)
 		UICorner_2.Parent = boxli
 
 		ValueText.Name = Fatality:RandomString()
@@ -2039,7 +2039,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Button_Name.TextTransparency = 0
 		Fatality:ProtectText(Button_Name,Config.Name);
 
-		UICorner.CornerRadius = UDim.new(0, 2)
+		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = Button;
 
 		local OpcToggle = function(value)
@@ -2150,7 +2150,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Size = UDim2.new(0, 35, 0.699999988, 0)
 		ValueFrame.ZIndex = ZIndex + 3
 
-		UICorner.CornerRadius = UDim.new(0, 2)
+		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = ValueFrame
 
 		OptionButton.Name = Fatality:RandomString()
@@ -2333,7 +2333,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		DropUIStroke.Color = Color3.fromRGB(255, 255, 255)
 		DropUIStroke.Parent = ValueFrame
 
-		UICorner.CornerRadius = UDim.new(0, 2)
+		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = ValueFrame
 
 		OptionButton.Name = Fatality:RandomString()
@@ -2594,7 +2594,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueFrame.Size = UDim2.new(0, 75, 0.850000024, 0)
 		ValueFrame.ZIndex = ZIndex + 2
 
-		UICorner.CornerRadius = UDim.new(0, 2)
+		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = ValueFrame
 
 		OptionButton.Name = Fatality:RandomString()
@@ -2894,7 +2894,7 @@ function Fatality:CreateConfigWindow(Root: ScreenGui , Fatal , Button: ImageButt
 	ConfigWindowFrame.Size = UDim2.new(0, 185, 0, 0)
 	ConfigWindowFrame.ZIndex = 205
 
-	UICorner.CornerRadius = UDim.new(0, 2)
+	UICorner.CornerRadius = UDim.new(0, 4)
 	UICorner.Parent = ConfigWindowFrame
 
 	UIStroke.Color = Fatality.Colors.Outlines
@@ -3441,7 +3441,6 @@ function Fatality.new(Window: Window)
 			})
 
 			Fatality:CreateAnimation(HeaderText,0.35,{
-				TextStrokeTransparency = 0.640,
 				TextTransparency = 0
 			})
 
@@ -3591,7 +3590,7 @@ function Fatality.new(Window: Window)
 	FatalFrame.Size = Window.Scale;
 	FatalFrame.ClipsDescendants = true
 
-	UICorner.CornerRadius = UDim.new(0, 5)
+	UICorner.CornerRadius = UDim.new(0, 6)
 	UICorner.Parent = FatalFrame
 
 	DropShadow.Name = Fatality:RandomString()
@@ -3617,6 +3616,7 @@ function Fatality.new(Window: Window)
 	Header.BorderSizePixel = 0
 	Header.Size = UDim2.new(1, 0, 0, 50)
 	Header.ZIndex = 2
+	Header.ClipsDescendants = true
 
 	HeaderLine.Name = Fatality:RandomString()
 	HeaderLine.Parent = Header
@@ -3628,7 +3628,21 @@ function Fatality.new(Window: Window)
 	HeaderLine.Size = UDim2.new(1, 0, 0, 1)
 	HeaderLine.ZIndex = 3
 
-	UICorner_2.CornerRadius = UDim.new(0, 0)
+	local HeaderLineShadow = Instance.new("Frame")
+	HeaderLineShadow.Name = Fatality:RandomString()
+	HeaderLineShadow.Parent = Header
+	HeaderLineShadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	HeaderLineShadow.BackgroundTransparency = 0
+	HeaderLineShadow.BorderSizePixel = 0
+	HeaderLineShadow.Position = UDim2.new(0, 0, 1, 0)
+	HeaderLineShadow.Size = UDim2.new(1, 0, 0, 6)
+	HeaderLineShadow.ZIndex = 4
+	local gradTop = Instance.new("UIGradient")
+	gradTop.Rotation = 90
+	gradTop.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)}
+	gradTop.Parent = HeaderLineShadow
+
+	UICorner_2.CornerRadius = UDim.new(0, 6)
 	UICorner_2.Parent = Header
 
 	HeaderText.Name = Fatality:RandomString()
@@ -3641,10 +3655,10 @@ function Fatality.new(Window: Window)
 	HeaderText.Position = UDim2.new(0, 20, 0.5, 0)
 	HeaderText.Size = UDim2.new(0, 100, 0, 14)
 	HeaderText.ZIndex = 4
-	HeaderText.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.Bold, Enum.FontStyle.Normal)
+	HeaderText.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 	HeaderText.Text = Window.Name
 	HeaderText.TextColor3 = Fatality.Colors.HeadingText
-	HeaderText.TextSize = 14
+	HeaderText.TextSize = 16
 	HeaderText.TextStrokeTransparency = 1.0
 	HeaderText.RichText = false
 	HeaderText.AutomaticSize = Enum.AutomaticSize.X
@@ -3662,11 +3676,14 @@ function Fatality.new(Window: Window)
 	MenuButtonCont.ZIndex = 4
 
 	-- Dynamically position tab container 23px to the right of heading text
-	task.defer(function()
-		local headingSize = TextService:GetTextSize(HeaderText.Text, HeaderText.TextSize, Enum.Font.GothamBold, Vector2.new(math.huge, math.huge))
-		MenuButtonCont.Position = UDim2.fromOffset(20 + headingSize.X + 23, 0)
-		MenuButtonCont.Size = UDim2.new(1, -(20 + headingSize.X + 23 + 200), 1, 0)
-	end)
+	local function updateTabContainer()
+		local headingSize = HeaderText.AbsoluteSize
+		MenuButtonCont.Position = UDim2.new(0, 20 + headingSize.X + 23, 0.5, 0)
+		MenuButtonCont.Size = UDim2.new(0, math.clamp(Header.AbsoluteSize.X - 200 - headingSize.X - 43, 0, 9999), 1, 0)
+	end
+	Header:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateTabContainer)
+	HeaderText:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateTabContainer)
+	task.defer(updateTabContainer)
 
 	tbc.Name = Fatality:RandomString()
 	tbc.Parent = MenuButtonCont
@@ -3758,20 +3775,17 @@ function Fatality.new(Window: Window)
 	HeaderLineShadow.Name = Fatality:RandomString()
 	HeaderLineShadow.Parent = FatalFrame
 	HeaderLineShadow.AnchorPoint = Vector2.new(0, 0)
-	HeaderLineShadow.BackgroundColor3 = Color3.fromRGB(190, 194, 197)
+	HeaderLineShadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	HeaderLineShadow.BackgroundTransparency = 0
 	HeaderLineShadow.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	HeaderLineShadow.BorderSizePixel = 0
 	HeaderLineShadow.Position = UDim2.fromOffset(0, 51)
 	HeaderLineShadow.Size = UDim2.new(1, 0, 0, 6)
-	HeaderLineShadow.ZIndex = 2
+	HeaderLineShadow.ZIndex = 4
 
 	UIGradient.Rotation = 90
-	UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(190, 194, 197)), ColorSequenceKeypoint.new(1.00, Fatality.Colors.MainBg)}
-	UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(1.00, 0.00)}
+	UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)}
 	UIGradient.Parent = HeaderLineShadow
-
-	UICorner_4.CornerRadius = UDim.new(0, 0)
-	UICorner_4.Parent = HeaderLineShadow
 
 	MenuFrame.Name = Fatality:RandomString()
 	MenuFrame.Parent = FatalFrame
@@ -3801,27 +3815,23 @@ function Fatality.new(Window: Window)
 	HeaderLine_2.Size = UDim2.new(1, 0, 0, 1)
 	HeaderLine_2.ZIndex = 3
 
-	UICorner_5.CornerRadius = UDim.new(0, 4)
+	UICorner_5.CornerRadius = UDim.new(0, 6)
 	UICorner_5.Parent = Bottom
 
 	HeaderLineShadow_2.Name = Fatality:RandomString()
 	HeaderLineShadow_2.Parent = FatalFrame
 	HeaderLineShadow_2.AnchorPoint = Vector2.new(0, 1)
-	HeaderLineShadow_2.BackgroundColor3 = Color3.fromRGB(190, 194, 197)
+	HeaderLineShadow_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	HeaderLineShadow_2.BackgroundTransparency = 0
 	HeaderLineShadow_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	HeaderLineShadow_2.BorderSizePixel = 0
 	HeaderLineShadow_2.Position = UDim2.new(0, 0, 1, -29)
 	HeaderLineShadow_2.Size = UDim2.new(1, 0, 0, 6)
-	HeaderLineShadow_2.ZIndex = 2
+	HeaderLineShadow_2.ZIndex = 4
 
 	UIGradient_2.Rotation = -90
-	UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(190, 194, 197)), ColorSequenceKeypoint.new(1.00, Fatality.Colors.MainBg)}
-	UIGradient_2.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(1.00, 0.00)}
+	UIGradient_2.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0, 0.4), NumberSequenceKeypoint.new(1, 1)}
 	UIGradient_2.Parent = HeaderLineShadow_2
-
-	UICorner_6.CornerRadius = UDim.new(0, 0)
-	UICorner_6.Parent = HeaderLineShadow_2
 
 	Fatality:Drag(FatalFrame,FatalFrame,0.1);
 
@@ -4266,7 +4276,7 @@ function Fatality.new(Window: Window)
 			UIStroke.Color = Fatality.Colors.Outlines
 			UIStroke.Parent = Main
 
-			UICorner.CornerRadius = UDim.new(0, 2)
+			UICorner.CornerRadius = UDim.new(0, 4)
 			UICorner.Parent = Main
 
 			MainBlock.Name = "MainBlock"
@@ -4391,7 +4401,7 @@ function Fatality.new(Window: Window)
 			UIStroke.Color = Fatality.Colors.Outlines
 			UIStroke.Parent = Elements
 
-			UICorner.CornerRadius = UDim.new(0, 2)
+			UICorner.CornerRadius = UDim.new(0, 4)
 			UICorner.Parent = Elements
 
 			SearchBox.Name = Fatality:RandomString()
@@ -5087,7 +5097,7 @@ function Fatality.new(Window: Window)
 					UIStroke.Color = Fatality.Colors.Outlines
 					UIStroke.Parent = Elements
 
-					UICorner.CornerRadius = UDim.new(0, 2)
+					UICorner.CornerRadius = UDim.new(0, 4)
 					UICorner.Parent = Elements
 
 					UIListLayout.Parent = Elements
@@ -5252,7 +5262,7 @@ function Fatality.new(Window: Window)
 					CardFrame.Parent = colFrame
 					CardFrame.BackgroundColor3 = Fatality.Colors.GroupboxBg
 					CardFrame.BorderSizePixel = 0
-					CardFrame.ClipsDescendants = true
+					CardFrame.ClipsDescendants = false
 					CardFrame.Size = UDim2.fromOffset(colFrame.AbsoluteSize.X, 100)
 
 					local CardCorner = Instance.new("UICorner")
@@ -5274,7 +5284,7 @@ function Fatality.new(Window: Window)
 					TitleLabel.Position = UDim2.fromOffset(8, -6)
 					TitleLabel.Size = UDim2.new(0, 0, 0, TITLE_HEIGHT)
 					TitleLabel.AutomaticSize = Enum.AutomaticSize.X
-					TitleLabel.ZIndex = CardFrame.ZIndex + 2
+					TitleLabel.ZIndex = CardFrame.ZIndex + 10
 					TitleLabel.Font = Enum.Font.GothamBold
 					TitleLabel.Text = string.upper(Config.Name)
 					TitleLabel.TextColor3 = Fatality.Colors.GroupboxHeading
@@ -5305,7 +5315,7 @@ function Fatality.new(Window: Window)
 					ContentFrame.BackgroundColor3 = Fatality.Colors.GroupboxBg
 					ContentFrame.BackgroundTransparency = 0
 					ContentFrame.BorderSizePixel = 0
-					ContentFrame.Position = UDim2.fromOffset(CARD_PADDING, topPad)
+					ContentFrame.Position = UDim2.fromOffset(CARD_PADDING, 10 + CARD_PADDING)
 					ContentFrame.Size = UDim2.new(
 						1, -CARD_PADDING * 2,
 						1, -(topPad + CARD_PADDING)
@@ -5316,7 +5326,7 @@ function Fatality.new(Window: Window)
 					ContentFrame.ScrollingEnabled = false
 
 					local ContentCorner = Instance.new("UICorner")
-					ContentCorner.CornerRadius = UDim.new(0, 2)
+					ContentCorner.CornerRadius = UDim.new(0, 4)
 					ContentCorner.Parent = ContentFrame
 
 					local ContentStroke = Instance.new("UIStroke")
@@ -5560,7 +5570,7 @@ function Fatality.new(Window: Window)
 		UIStroke.Color = Fatality.Colors.Outlines
 		UIStroke.Parent = SearchFrame
 
-		UICorner.CornerRadius = UDim.new(0, 2)
+		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = SearchFrame
 
 		DropShadow.Name = Fatality:RandomString()
@@ -5588,7 +5598,7 @@ function Fatality.new(Window: Window)
 		SearchBox.Size = UDim2.new(1, -15, 0, 25)
 		SearchBox.ZIndex = 101
 
-		UICorner_2.CornerRadius = UDim.new(0, 2)
+		UICorner_2.CornerRadius = UDim.new(0, 4)
 		UICorner_2.Parent = SearchBox
 
 		UIStroke_2.Transparency = 0.650
