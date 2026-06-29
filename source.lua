@@ -5276,26 +5276,27 @@ function Fatality.new(Window: Window)
 
 			local function layoutColumns()
 				local hasSub = MenuLib._hasSidebar
-				local colW = 264
+				local visualW = 264
 				local gap = 14
 				local leftOffset = 14
 				
 				if hasSub then
 					leftOffset = 127
-					if count == 3 then colW = 226
-					elseif count == 2 then colW = 270
-					elseif count == 1 then colW = 256
+					if count == 3 then visualW = 226
+					elseif count == 2 then visualW = 270
+					elseif count == 1 then visualW = 256
 					end
 				else
 					leftOffset = 14
-					if count == 3 then colW = 264
-					elseif count == 2 then colW = 264
-					elseif count == 1 then colW = 264
+					if count == 3 then visualW = 264
+					elseif count == 2 then visualW = 264
+					elseif count == 1 then visualW = 264
 					end
 				end
 				
+				local colW = visualW - 2
 				for i, col in ipairs(columnFrames) do
-					local x = leftOffset + (i - 1) * (colW + gap)
+					local x = leftOffset + (i - 1) * (visualW + gap)
 					col.Position = UDim2.fromOffset(x, 0)
 					col.Size = UDim2.fromOffset(colW, ColumnsContainer.AbsoluteSize.Y)
 				end
