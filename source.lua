@@ -290,6 +290,7 @@ Fatality.Colors = {
 	HeadingText = Color3.fromRGB(39, 39, 38),
 	GroupboxHeading = Color3.fromRGB(42, 45, 46),
 	FeatureText = Color3.fromRGB(42, 45, 46),
+	OptionsText = Color3.fromHex("2a2d2e"),
 	OptionStateText = Color3.fromRGB(117, 119, 126),
 	DisabledText = Color3.fromRGB(160, 163, 169),
 	Outlines = Color3.fromRGB(244, 246, 250),
