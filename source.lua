@@ -1062,7 +1062,7 @@ function Fatality:CreateColorPicker(ColorBox: Frame,Transparency, Callback)
 	HexCodeText.ZIndex = 209
 	HexCodeText.FontFace = Fatality.FontSemiBold
 	HexCodeText.Text = "#fff"
-	HexCodeText.TextColor3 = Fatality.Colors.FeatureText
+	HexCodeText.TextColor3 = Fatality.Colors.OptionsText
 	HexCodeText.TextSize = 13.000
 	HexCodeText.TextTransparency = 0.450
 	HexCodeText.TextXAlignment = Enum.TextXAlignment.Left;
@@ -1596,7 +1596,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Toggle_Name.Size = UDim2.new(1, 0, 0.800000012, 0)
 		Toggle_Name.ZIndex = ZIndex + 2
 		Toggle_Name.FontFace = Fatality.FontSemiBold;
-		Toggle_Name.TextColor3 = Fatality.Colors.FeatureText
+		Toggle_Name.TextColor3 = Fatality.Colors.OptionsText
 		Toggle_Name.TextSize = 13.000
 		Toggle_Name.TextTransparency = 0
 		Toggle_Name.TextXAlignment = Enum.TextXAlignment.Left;
@@ -1613,7 +1613,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueIcon.Position = UDim2.new(1, -5, 0.5, 0)
 		ValueIcon.Size = UDim2.new(0.65, 0, 0.65, 0)
 		ValueIcon.SizeConstraint = Enum.SizeConstraint.RelativeYY
-		ValueIcon.ZIndex = ZIndex + 2
+		ValueIcon.ZIndex = ZIndex + 5
 		ValueIcon.Image = "rbxassetid://10709790644"
 		ValueIcon.ImageColor3 = Fatality.Colors.InactiveTab
 		ValueIcon.ImageTransparency = 0
@@ -1636,13 +1636,15 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		local toggleImg = function(value)
 			if value then
 				Fatality:CreateAnimation(ValueIcon,0.25,{
-					ImageColor3 = Fatality.Colors.CheckmarkColor,
+					ImageColor3 = Color3.fromHex("aacad1"),
+					ImageTransparency = 0,
 					Size = UDim2.new(0.8, 0, 0.8, 0),
 					Rotation = 0,
 				})
 			else
 				Fatality:CreateAnimation(ValueIcon,0.25,{
-					ImageColor3 = Fatality.Colors.InactiveTab,
+					ImageColor3 = Color3.fromHex("696b6d"),
+					ImageTransparency = 0,
 					Size = UDim2.new(0.65, 0, 0.65, 0),
 					Rotation = 0
 				})
@@ -1652,7 +1654,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		local OpcToggle = function(value)
 			if value then
 				Fatality:CreateAnimation(ValueIcon,0.45,{
-					ImageTransparency = 1,
+					ImageTransparency = 0,
 				})
 
 				Fatality:CreateAnimation(OptionButton,0.45,{
@@ -1801,7 +1803,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Slider_Name.ZIndex = ZIndex + 2
 		Slider_Name.FontFace = Fatality.FontSemiBold
 		Slider_Name.Text = Config.Name
-		Slider_Name.TextColor3 = Fatality.Colors.FeatureText
+		Slider_Name.TextColor3 = Fatality.Colors.OptionsText
 		Slider_Name.TextSize = 13.000
 		Slider_Name.TextTransparency = 0
 		Slider_Name.TextXAlignment = Enum.TextXAlignment.Left
@@ -1855,7 +1857,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueText.ZIndex = ZIndex + 4
 		ValueText.FontFace = Fatality.FontSemiBold
 		ValueText.Text = string.format('%s%s',tostring(Config.Default),tostring(Config.Type));
-		ValueText.TextColor3 = Fatality.Colors.FeatureText
+		ValueText.TextColor3 = Fatality.Colors.OptionsText
 		ValueText.TextSize = 9.000
 		ValueText.TextStrokeTransparency = 0.850;
 		ValueText.TextTransparency = 0
@@ -2034,7 +2036,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Button_Name.ZIndex = ZIndex + 2
 		Button_Name.FontFace = Fatality.FontSemiBold
 		Button_Name.Text = Config.Name
-		Button_Name.TextColor3 = Fatality.Colors.FeatureText
+		Button_Name.TextColor3 = Fatality.Colors.OptionsText
 		Button_Name.TextSize = 12.000
 		Button_Name.TextTransparency = 0
 		Fatality:ProtectText(Button_Name,Config.Name);
@@ -2134,7 +2136,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ColorPicker_Name.ZIndex = ZIndex + 2
 		ColorPicker_Name.FontFace = Fatality.FontSemiBold
 		ColorPicker_Name.Text = Config.Name
-		ColorPicker_Name.TextColor3 = Fatality.Colors.FeatureText
+		ColorPicker_Name.TextColor3 = Fatality.Colors.OptionsText
 		ColorPicker_Name.TextSize = 13.000
 		ColorPicker_Name.TextTransparency = 0
 		ColorPicker_Name.TextXAlignment = Enum.TextXAlignment.Left
@@ -2312,7 +2314,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Dropdown_Name.ZIndex = 7
 		Dropdown_Name.FontFace = Fatality.FontSemiBold
 		Dropdown_Name.Text = Config.Name
-		Dropdown_Name.TextColor3 = Fatality.Colors.FeatureText
+		Dropdown_Name.TextColor3 = Fatality.Colors.OptionsText
 		Dropdown_Name.TextSize = 13.000
 		Dropdown_Name.TextTransparency = 0
 		Dropdown_Name.TextXAlignment = Enum.TextXAlignment.Left
@@ -2376,7 +2378,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Value_Text.ZIndex = ZIndex + 5
 		Value_Text.FontFace = Fatality.FontSemiBold
 		Value_Text.Text = DataParser(Config.Default)
-		Value_Text.TextColor3 = Fatality.Colors.FeatureText
+		Value_Text.TextColor3 = Fatality.Colors.OptionsText
 		Value_Text.TextSize = 10.000
 		Value_Text.TextTransparency = 0
 		Value_Text.TextXAlignment = Enum.TextXAlignment.Left
@@ -2578,7 +2580,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		Keybind_Name.ZIndex = ZIndex + 2
 		Keybind_Name.FontFace = Fatality.FontSemiBold
 		Keybind_Name.Text = Config.Name
-		Keybind_Name.TextColor3 = Fatality.Colors.FeatureText
+		Keybind_Name.TextColor3 = Fatality.Colors.OptionsText
 		Keybind_Name.TextSize = 13.000
 		Keybind_Name.TextTransparency = 0
 		Keybind_Name.TextXAlignment = Enum.TextXAlignment.Left
@@ -2621,7 +2623,7 @@ function Fatality:CreateElements(Parent : Frame , ZIndex : number , Event : Bind
 		ValueText.ZIndex = ZIndex + 3
 		ValueText.FontFace = Fatality.FontSemiBold
 		ValueText.Text = GetItem(Config.Default)
-		ValueText.TextColor3 = Fatality.Colors.FeatureText
+		ValueText.TextColor3 = Fatality.Colors.OptionsText
 		ValueText.TextSize = 9.000
 		ValueText.TextStrokeTransparency = 0.850
 		ValueText.TextTransparency = 0
@@ -2972,7 +2974,7 @@ function Fatality:CreateConfigWindow(Root: ScreenGui , Fatal , Button: ImageButt
 	TextBox.ZIndex = 209
 	TextBox.FontFace = Fatality.FontSemiBold
 	TextBox.Text = ""
-	TextBox.TextColor3 = Fatality.Colors.FeatureText
+	TextBox.TextColor3 = Fatality.Colors.OptionsText
 	TextBox.TextSize = 10.000
 	TextBox.TextTransparency = 0
 	TextBox.TextXAlignment = Enum.TextXAlignment.Left
@@ -3656,9 +3658,9 @@ function Fatality.new(Window: Window)
 	HeaderText.Size = UDim2.new(0, 100, 0, 14)
 	HeaderText.ZIndex = 4
 	HeaderText.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
-	HeaderText.Text = Window.Name
+	HeaderText.Text = "FEMTALITY"
 	HeaderText.TextColor3 = Fatality.Colors.HeadingText
-	HeaderText.TextSize = 16
+	HeaderText.TextSize = 20
 	HeaderText.TextStrokeTransparency = 1.0
 	HeaderText.RichText = false
 	HeaderText.AutomaticSize = Enum.AutomaticSize.X
@@ -3679,7 +3681,7 @@ function Fatality.new(Window: Window)
 	local function updateTabContainer()
 		local headingSize = HeaderText.AbsoluteSize
 		MenuButtonCont.Position = UDim2.new(0, 20 + headingSize.X + 23, 0.5, 0)
-		MenuButtonCont.Size = UDim2.new(0, math.clamp(Header.AbsoluteSize.X - 200 - headingSize.X - 43, 0, 9999), 1, 0)
+		MenuButtonCont.Size = UDim2.new(0, math.clamp(Header.AbsoluteSize.X - UserProfle.AbsoluteSize.X - headingSize.X - 43, 0, 9999), 1, 0)
 	end
 	Header:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateTabContainer)
 	HeaderText:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateTabContainer)
@@ -3714,7 +3716,7 @@ function Fatality.new(Window: Window)
 	UserProfle.BackgroundTransparency = 1.000
 	UserProfle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	UserProfle.BorderSizePixel = 0
-	UserProfle.Position = UDim2.new(1, 0, 0, 0)
+	UserProfle.Position = UDim2.new(1, -8, 0.5, 0)
 	UserProfle.Size = UDim2.new(0, 200, 1, 0)
 	UserProfle.ZIndex = 4
 
@@ -3725,7 +3727,7 @@ function Fatality.new(Window: Window)
 	UserIcon.BackgroundTransparency = 1.000
 	UserIcon.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	UserIcon.BorderSizePixel = 0
-	UserIcon.Position = UDim2.new(1, -24, 0.5, 0)
+	UserIcon.Position = UDim2.new(1, -8, 0.5, 0)
 	UserIcon.Size = UDim2.fromOffset(28, 28)
 	UserIcon.ZIndex = 5
 	UserIcon.Image = Players:GetUserThumbnailAsync(Client.UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size180x180);
@@ -3744,7 +3746,7 @@ function Fatality.new(Window: Window)
 	User_name.BackgroundTransparency = 1.000
 	User_name.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	User_name.BorderSizePixel = 0
-	User_name.Position = UDim2.new(1, -57, 0, 11)
+	User_name.Position = UDim2.new(1, -36, 0, 6)
 	User_name.Size = UDim2.new(0, 200, 0, 15)
 	User_name.ZIndex = 4
 	User_name.Font = Enum.Font.GothamMedium
@@ -3761,7 +3763,7 @@ function Fatality.new(Window: Window)
 	expire_days.BackgroundTransparency = 1.000
 	expire_days.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	expire_days.BorderSizePixel = 0
-	expire_days.Position = UDim2.new(1, -57, 0, 26)
+	expire_days.Position = UDim2.new(1, -36, 0, 20)
 	expire_days.Size = UDim2.new(0, 200, 0, 15)
 	expire_days.ZIndex = 4
 	expire_days.Font = Enum.Font.GothamMedium
@@ -4258,7 +4260,7 @@ function Fatality.new(Window: Window)
 			PreviewName.ZIndex = 19
 			PreviewName.FontFace = Fatality.FontSemiBold
 			PreviewName.Text = Config.Name
-			PreviewName.TextColor3 = Fatality.Colors.FeatureText
+			PreviewName.TextColor3 = Fatality.Colors.OptionsText
 			PreviewName.TextSize = 15.000
 			PreviewName.TextStrokeTransparency = 0.750
 			PreviewName.TextXAlignment = Enum.TextXAlignment.Left
@@ -4426,7 +4428,7 @@ function Fatality.new(Window: Window)
 			TextBox.FontFace = Fatality.FontSemiBold
 			TextBox.PlaceholderText = "Start typing..."
 			TextBox.Text = ""
-			TextBox.TextColor3 = Fatality.Colors.FeatureText
+			TextBox.TextColor3 = Fatality.Colors.OptionsText
 			TextBox.TextSize = 11.000
 			TextBox.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -4506,7 +4508,7 @@ function Fatality.new(Window: Window)
 			ListName.ZIndex = 10
 			ListName.FontFace = Fatality.FontSemiBold
 			ListName.Text = Config.Name
-			ListName.TextColor3 = Fatality.Colors.FeatureText
+			ListName.TextColor3 = Fatality.Colors.OptionsText
 			ListName.TextSize = 15.000
 			ListName.TextStrokeTransparency = 0.750
 			ListName.TextXAlignment = Enum.TextXAlignment.Left
@@ -4686,7 +4688,7 @@ function Fatality.new(Window: Window)
 								bth.TextTransparency = 0;
 
 							else
-								bth.TextColor3 = Fatality.Colors.FeatureText;
+								bth.TextColor3 = Fatality.Colors.OptionsText;
 								bth.TextTransparency = 0.5;
 
 								Config.Default[v] = false
@@ -4714,7 +4716,7 @@ function Fatality.new(Window: Window)
 									bth.TextTransparency = 0;
 
 								else
-									bth.TextColor3 = Fatality.Colors.FeatureText;
+									bth.TextColor3 = Fatality.Colors.OptionsText;
 									bth.TextTransparency = 0.5;
 								end;
 
@@ -4729,7 +4731,7 @@ function Fatality.new(Window: Window)
 								bth.TextTransparency = 0;
 
 							else
-								bth.TextColor3 = Fatality.Colors.FeatureText;
+								bth.TextColor3 = Fatality.Colors.OptionsText;
 								bth.TextTransparency = 0.5;
 							end;
 
@@ -4749,7 +4751,7 @@ function Fatality.new(Window: Window)
 
 							bth.MouseButton1Click:Connect(function()
 								if selectedmem then
-									selectedmem.TextColor3 = Fatality.Colors.FeatureText;
+									selectedmem.TextColor3 = Fatality.Colors.OptionsText;
 									selectedmem.TextTransparency = 0.5;
 								end;
 
@@ -4863,10 +4865,21 @@ function Fatality.new(Window: Window)
 			SubTabButton.Size = UDim2.new(1, 0, 0, 29)
 			SubTabButton.Font = Enum.Font.GothamMedium
 			SubTabButton.Text = Config.Name
-			SubTabButton.TextColor3 = Fatality.Colors.InactiveSubtab
-			SubTabButton.TextSize = 9.000
+			SubTabButton.TextColor3 = Color3.fromHex("696b6d")
+			SubTabButton.TextSize = 13.000
 			SubTabButton.TextXAlignment = Enum.TextXAlignment.Left
 			SubTabButton.AutoButtonColor = false
+
+			SubTabButton.MouseEnter:Connect(function()
+				if MenuLib.SelectedSubTab ~= SubTabLib then
+					Fatality:CreateAnimation(SubTabButton, 0.2, {TextColor3 = Color3.fromHex("4a4c4e")})
+				end
+			end)
+			SubTabButton.MouseLeave:Connect(function()
+				if MenuLib.SelectedSubTab ~= SubTabLib then
+					Fatality:CreateAnimation(SubTabButton, 0.2, {TextColor3 = Color3.fromHex("696b6d")})
+				end
+			end)
 
 			local SubTabPadding = Instance.new("UIPadding")
 			SubTabPadding.PaddingLeft = UDim.new(0, 22)
@@ -4882,18 +4895,47 @@ function Fatality.new(Window: Window)
 			SubTabUnderline.Visible = false
 
 			-- Accent indicator: 2x19px, 14px from left edge of menu, vertically centered
+			local AccentWrapper = Instance.new("Frame")
+			AccentWrapper.Name = Fatality:RandomString()
+			AccentWrapper.Parent = SubTabButton
+			AccentWrapper.BackgroundTransparency = 1
+			AccentWrapper.BorderSizePixel = 0
+			AccentWrapper.AnchorPoint = Vector2.new(0, 0.5)
+			AccentWrapper.Position = UDim2.new(0, -8, 0.5, 0)
+			AccentWrapper.Size = UDim2.fromOffset(2, 19)
+			AccentWrapper.ClipsDescendants = true
+
 			local AccentLine = Instance.new("Frame")
 			AccentLine.Name = Fatality:RandomString()
-			AccentLine.Parent = SubTabButton
+			AccentLine.Parent = AccentWrapper
 			AccentLine.BackgroundColor3 = Fatality.Colors.Accent
 			AccentLine.BorderSizePixel = 0
-			AccentLine.AnchorPoint = Vector2.new(0, 0.5)
-			AccentLine.Position = UDim2.new(0, -8, 0.5, 0)
-			AccentLine.Size = UDim2.fromOffset(2, 19)
-			AccentLine.Visible = false
+			AccentLine.Position = UDim2.fromOffset(0, -19)
+			AccentLine.Size = UDim2.fromOffset(2, 0)
+
 			local AccentLineCorner = Instance.new("UICorner")
 			AccentLineCorner.CornerRadius = UDim.new(1, 0)
 			AccentLineCorner.Parent = AccentLine
+
+			local AccentStroke = Instance.new("UIStroke")
+			AccentStroke.Color = Color3.fromHex("ca9aa9")
+			AccentStroke.Thickness = 3
+			AccentStroke.Transparency = 0.7
+			AccentStroke.Parent = AccentLine
+
+			local AccentBloom = Instance.new("Frame")
+			AccentBloom.Name = Fatality:RandomString()
+			AccentBloom.Parent = AccentLine
+			AccentBloom.BackgroundColor3 = Color3.fromHex("ca9aa9")
+			AccentBloom.BackgroundTransparency = 0.85
+			AccentBloom.BorderSizePixel = 0
+			AccentBloom.AnchorPoint = Vector2.new(0.5, 0.5)
+			AccentBloom.Position = UDim2.fromScale(0.5, 0.5)
+			AccentBloom.Size = UDim2.fromOffset(8, 25)
+
+			local AccentBloomCorner = Instance.new("UICorner")
+			AccentBloomCorner.CornerRadius = UDim.new(1, 0)
+			AccentBloomCorner.Parent = AccentBloom
 
 			local SubTabFrame = Instance.new("Frame")
 			SubTabFrame.Name = Fatality:RandomString()
@@ -5618,7 +5660,7 @@ function Fatality.new(Window: Window)
 		TextBox.FontFace = Fatality.FontSemiBold;
 		TextBox.PlaceholderText = "Search"
 		TextBox.Text = ""
-		TextBox.TextColor3 = Fatality.Colors.FeatureText
+		TextBox.TextColor3 = Fatality.Colors.OptionsText
 		TextBox.TextSize = 12.000
 		TextBox.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -5688,7 +5730,7 @@ function Fatality.new(Window: Window)
 			FeatureName.ZIndex = 104
 			FeatureName.FontFace = Fatality.FontSemiBold
 			FeatureName.Text = Name
-			FeatureName.TextColor3 = Fatality.Colors.FeatureText
+			FeatureName.TextColor3 = Fatality.Colors.OptionsText
 			FeatureName.TextSize = 14.000
 			FeatureName.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -5703,7 +5745,7 @@ function Fatality.new(Window: Window)
 			FeaturePath.ZIndex = 104
 			FeaturePath.FontFace = Fatality.FontSemiBold
 			FeaturePath.Text = Path
-			FeaturePath.TextColor3 = Fatality.Colors.FeatureText
+			FeaturePath.TextColor3 = Fatality.Colors.OptionsText
 			FeaturePath.TextSize = 12.000
 			FeaturePath.TextTransparency = 0.500
 			FeaturePath.TextXAlignment = Enum.TextXAlignment.Left
@@ -5845,7 +5887,7 @@ function Fatality.new(Window: Window)
 		StyledTextLabel.Size = UDim2.new(1, -52, 1, 0)
 		StyledTextLabel.Font = Enum.Font.BuilderSansBold
 		StyledTextLabel.Text = Window.Name
-		StyledTextLabel.TextColor3 = Fatality.Colors.FeatureText
+		StyledTextLabel.TextColor3 = Fatality.Colors.OptionsText
 		StyledTextLabel.TextScaled = true
 		StyledTextLabel.TextSize = 20.000
 		StyledTextLabel.TextWrapped = true
@@ -6046,7 +6088,7 @@ function Fatality:Loader(Config: Loader)
 		ASCII.ZIndex = 8
 		ASCII.Font = Enum.Font.GothamBold
 		ASCII.Text = TEXT
-		ASCII.TextColor3 = Fatality.Colors.FeatureText
+		ASCII.TextColor3 = Fatality.Colors.OptionsText
 		ASCII.TextSize = 50.000
 		ASCII.TextWrapped = true
 
@@ -6103,7 +6145,7 @@ function Fatality:Loader(Config: Loader)
 		StartText.ZIndex = 8
 		StartText.Font = Enum.Font.GothamBold
 		StartText.Text = Config.Name:sub(1,1)
-		StartText.TextColor3 = Fatality.Colors.FeatureText
+		StartText.TextColor3 = Fatality.Colors.OptionsText
 		StartText.TextSize = 50.000
 		StartText.TextWrapped = true
 		StartText.TextTransparency = 0
@@ -6282,7 +6324,7 @@ function Fatality:CreateNotifier(): Notifier
 			BodyText.ZIndex = 55
 			BodyText.FontFace = Fatality.FontSemiBold
 			BodyText.Text = Config.Content or "";
-			BodyText.TextColor3 = Fatality.Colors.FeatureText
+			BodyText.TextColor3 = Fatality.Colors.OptionsText
 			BodyText.TextSize = 12.000
 			BodyText.TextTransparency = 1
 			BodyText.TextWrapped = true
