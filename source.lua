@@ -3654,13 +3654,13 @@ function Fatality.new(Window: Window)
 	HeaderText.BackgroundTransparency = 1.000
 	HeaderText.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	HeaderText.BorderSizePixel = 0
-	HeaderText.Position = UDim2.new(0, 20, 0.5, 0)
-	HeaderText.Size = UDim2.new(0, 100, 0, 14)
+	HeaderText.Position = UDim2.new(0, 19, 0.5, 0)
+	HeaderText.Size = UDim2.new(0, 100, 0, 15)
 	HeaderText.ZIndex = 4
-	HeaderText.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
+	HeaderText.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.ExtraBold, Enum.FontStyle.Normal)
 	HeaderText.Text = "FEMTALITY"
 	HeaderText.TextColor3 = Fatality.Colors.HeadingText
-	HeaderText.TextSize = 20
+	HeaderText.TextSize = 21
 	HeaderText.TextStrokeTransparency = 1.0
 	HeaderText.RichText = false
 	HeaderText.AutomaticSize = Enum.AutomaticSize.X
@@ -3680,8 +3680,8 @@ function Fatality.new(Window: Window)
 	-- Dynamically position tab container 23px to the right of heading text
 	local function updateTabContainer()
 		local headingSize = HeaderText.AbsoluteSize
-		MenuButtonCont.Position = UDim2.new(0, 20 + headingSize.X + 23, 0.5, 0)
-		MenuButtonCont.Size = UDim2.new(0, math.clamp(Header.AbsoluteSize.X - UserProfle.AbsoluteSize.X - headingSize.X - 43, 0, 9999), 1, 0)
+		MenuButtonCont.Position = UDim2.new(0, 19 + headingSize.X + 23, 0.5, 0)
+		MenuButtonCont.Size = UDim2.new(0, math.clamp(Header.AbsoluteSize.X - UserProfle.AbsoluteSize.X - headingSize.X - 42, 0, 9999), 1, 0)
 	end
 	Header:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateTabContainer)
 	HeaderText:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateTabContainer)
