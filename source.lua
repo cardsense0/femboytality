@@ -5362,7 +5362,7 @@ function Fatality.new(Window: Window)
 					local TitleLabel = Instance.new("TextLabel")
 					TitleLabel.Name = Fatality:RandomString()
 					TitleLabel.Parent = CardFrame
-					TitleLabel.BackgroundColor3 = Fatality.Colors.GroupboxBg
+					TitleLabel.BackgroundColor3 = Fatality.Colors.Outlines
 					TitleLabel.BackgroundTransparency = 0
 					TitleLabel.BorderSizePixel = 0
 					TitleLabel.Position = UDim2.fromOffset(8, -6)
@@ -5376,7 +5376,7 @@ function Fatality.new(Window: Window)
 					TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 					local TitleCorner = Instance.new("UICorner")
-					TitleCorner.CornerRadius = UDim.new(1, 0)
+					TitleCorner.CornerRadius = UDim.new(0, 4)
 					TitleCorner.Parent = TitleLabel
 
 					local TitlePadding = Instance.new("UIPadding")
